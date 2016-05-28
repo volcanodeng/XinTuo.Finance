@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using NHibernate;
+using NHibernate.Impl;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;

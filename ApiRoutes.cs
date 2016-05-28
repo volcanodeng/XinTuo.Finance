@@ -22,12 +22,12 @@ namespace XinTuo.Finance
                     }
                 },
                 new HttpRouteDescriptor {
-                    Name="Financial Cloud FinanceApi",
+                    Name="Subject Setting Api",
                     Priority=0,
-                    RouteTemplate="api/f/{action}/{id}",
+                    RouteTemplate="api/s/{action}/{id}",
                     Defaults=new {
                         area="XinTuo.Finance",
-                        controller="FinanceApi",
+                        controller="SubjectApi",
                         id=RouteParameter.Optional
                     }
                 }
