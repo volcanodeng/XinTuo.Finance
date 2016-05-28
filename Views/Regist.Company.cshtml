@@ -1,0 +1,74 @@
+﻿
+
+@{
+    Style.Require("MainSty").AtHead();
+
+    Script.Require("Company.App").AtHead();
+}
+
+@using (Script.Head())
+{
+    <script type="text/javascript">
+        var antiForgeryToken = "@Html.AntiForgeryTokenValueOrchard()";
+
+        $(function () {
+            @if (Model.Company != null && Model.Company.Region != null)
+            {
+                <text>
+                $("#province").combobox('select', "@Model.Company.Region.ProvinceId");
+                $("#city").combobox('select', "@Model.Company.Region.CityId");
+                $("#county").combobox('select', "@Model.Company.Region.RegionId");
+                </text>
+            }
+        });
+    </script>
+}
+<table>
+    <tr>
+        <td class="form_lab">@T("公司全称")<span style="color:red;">*</span></td>
+        <td>
+            <input class="easyui-textbox" id="ComFullName" data-options="prompt:'如：广西新拓财务科技公司...',required:true" value="@Model.Company.ComFullName" style="width:100%;height:32px">
+        </td>
+    </tr>
+    <tr>
+        <td class="form_lab">@T("公司简称")</td>
+        <td><input class="easyui-textbox" id="ComShortName" data-options="prompt:'如：“金蝶”、“用友”...'" value="@Model.Company.ComShortName" style="width:100%;height:32px"></td>
+    </tr>
+    <tr>
+        <td class="form_lab">@T("行政区划")<span style="color:red;">*</span></td>
+        <td>
+            <select id="province" class="easyui-combobox" style="width:150px;height:30px;" data-options="valueField:'provinceId',textField:'provinceName',url:'/api/c/GetProvinces',method:'GET',onChange:onProvinceSelected,required:true,editable:false"></select>
+            <select id="city" class="easyui-combobox" style="width:100px;height:30px;" data-options="required:true,editable:false"></select>
+            <select id="county" class="easyui-combobox" style="width:100px;height:30px;" data-options="required:true,editable:false"></select>
+        </td>
+    </tr>
+    <tr>
+        <td class="form_lab">@T("公司地址")<span style="color:red;">*</span></td>
+        <td><input class="easyui-textbox" id="ComAddress" data-options="prompt:'如：南山区科技园现代大厦6楼...',required:true" value="@Model.Company.ComAddress" style="width:100%;height:32px"></td>
+    </tr>
+    <tr>
+        <td class="form_lab">@T("公司电话")</td>
+        <td><input class="easyui-textbox" id="ComTel" data-options="prompt:'如：0771-7654321...',validType:'telNum'" value="@Model.Company.ComTel" style="width:100%;height:32px"></td>
+    </tr>
+    <tr>
+        <td class="form_lab">@T("联系人姓名")<span style="color:red;">*</span></td>
+        <td><input class="easyui-textbox" id="ContactsName" data-options="prompt:'如：张小三...',required:true" value="@Model.Company.ContactsName" style="width:100%;height:32px"></td>
+    </tr>
+    <tr>
+        <td class="form_lab">@T("联系人电话")<span style="color:red;">*</span></td>
+        <td><input class="easyui-textbox" id="ContactsMobile" data-options="prompt:'如：13907881234...',required:true" value="@Model.Company.ContactsMobile" style="width:100%;height:32px"></td>
+    </tr>
+    <tr>
+        <td class="form_lab">@T("联系人邮箱")<span style="color:red;">*</span></td>
+        <td><input class="easyui-textbox" id="ContactsEmail" data-options="prompt:'如：1234567@qq.com...',required:true,validType:'email'" value="@Model.Company.ContactsEmail" style="width:100%;height:32px"></td>
+    </tr>
+    <tr><td colspan="2">
+        <input type="hidden" value="@Model.Company.CompanyId" id="CompanyId"/>
+        </td></tr>
+    <tr>
+        <td colspan="2" style="text-align:right;">
+            <button class="primaryAction" onclick="onCompanySave()">保存</button>
+        </td>
+    </tr>
+    
+</table>

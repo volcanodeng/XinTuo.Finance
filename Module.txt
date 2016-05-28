@@ -1,0 +1,8 @@
+﻿Name: XinTuo.Finance
+AntiForgery: enabled
+Author: 邓庆
+Website: http://orchardproject.net
+Version: 1.0
+OrchardVersion: 1.10.1
+Description: Description for the module
+Category: Cloud
