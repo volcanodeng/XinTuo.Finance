@@ -32,6 +32,11 @@ namespace XinTuo.Finance.Models
             get;set;
         }
 
+        public MSubjectCategory Category
+        {
+            get;set;
+        }
+
         public int CompanyId
         {
             get;set;

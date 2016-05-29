@@ -1,5 +1,12 @@
 ﻿
-function SearchSubject()
+function SearchSubject(cid)
 {
-    $.post("");
+    $.post("/api/s/GetSubjectsByCategory",
+        {
+            cid: cid
+        },
+        function (data) {
+            $("")
+        }
+        );
 }

@@ -16,5 +16,12 @@ namespace XinTuo.Finance.Services
             return JsonConvert.DeserializeObject<T>(json);
         }
 
+        public static List<T> Convert<T>(DataTable dt)
+        {
+            string json = JsonConvert.SerializeObject(dt);
+            return JsonConvert.DeserializeObject<List<T>>(json);
+        }
+
+
     }
 }
