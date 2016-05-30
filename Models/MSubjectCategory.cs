@@ -12,7 +12,7 @@ namespace XinTuo.Finance.Models
             get;set;
         }
 
-        public int ParentSubjectCategory
+        public int? ParentSubjectCategory
         {
             get;set;
         }

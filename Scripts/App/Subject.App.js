@@ -10,3 +10,8 @@ function SearchSubject(cid)
         }
         );
 }
+
+function onTabSelected(title,index)
+{
+
+}

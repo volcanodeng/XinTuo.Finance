@@ -5,7 +5,7 @@
     Script.Require("Subject.App").AtHead();
 }
 
-<div class="easyui-tabs" data-options="plain:true,toolbar: '#tb'" style="width:700px;height:550px">
+<div class="easyui-tabs" data-options="plain:true" style="width:700px;height:550px">
     @foreach (XinTuo.Finance.Models.MSubjectCategory sc in Model.GenCategory)
     {
         string divName = "category" + sc.SubjectCategory.ToString();
@@ -13,14 +13,14 @@
     <text>
     <div title="@sc.CategoryShortName" id="@divName" data-options="closable:false" style="padding:10px;">
         <table class="easyui-datagrid" id="@tableName" style="width:auto;height:auto;"
-               data-options="fitColumns:true,singleSelect:true">
+               data-options="fitColumns:true,singleSelect:true,toolbar: '#tb'">
             <thead>
                 <tr>
-                    <th data-options="field:'SubjectCode'">@T("编码")</th>
-                    <th data-options="field:'SubjectName'">@T("名称")</th>
-                    <th data-options="field:'code'">@T("类别")</th>
-                    <th data-options="field:'BalanceDirection'">@T("余额方向")</th>
-                    <th data-options="field:'SubjectState'">@T("状态")</th>
+                    <th data-options="field:'SubjectCode',width:40,align:'center'">@T("编码")</th>
+                    <th data-options="field:'SubjectName',width:60,align:'center'">@T("名称")</th>
+                    <th data-options="field:'code',width:60,align:'center'">@T("类别")</th>
+                    <th data-options="field:'BalanceDirection',width:40,align:'center'">@T("余额方向")</th>
+                    <th data-options="field:'SubjectState',width:30,align:'center'">@T("状态")</th>
                 </tr>
             </thead>
         </table>
