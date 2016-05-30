@@ -5,7 +5,7 @@
     Script.Require("Subject.App").AtHead();
 }
 
-<div class="easyui-tabs" data-options="plain:true" style="width:700px;height:550px">
+<div class="easyui-tabs" data-options="plain:true,toolbar: '#tb'" style="width:700px;height:550px">
     @foreach (XinTuo.Finance.Models.MSubjectCategory sc in Model.GenCategory)
     {
         string divName = "category" + sc.SubjectCategory.ToString();
@@ -21,7 +21,6 @@
                     <th data-options="field:'code'">@T("类别")</th>
                     <th data-options="field:'BalanceDirection'">@T("余额方向")</th>
                     <th data-options="field:'SubjectState'">@T("状态")</th>
-                    <th data-options="">@T("操作")</th>
                 </tr>
             </thead>
         </table>
@@ -29,4 +28,12 @@
     </text>
     
     }
+</div>
+
+<div id="tb" style="height:auto">
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="append()">Append</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="removeit()">Remove</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="accept()">Accept</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="reject()">Reject</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="getChanges()">GetChanges</a>
 </div>
