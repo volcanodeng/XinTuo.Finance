@@ -12,12 +12,12 @@ namespace XinTuo.Finance.Models
             get;set;
         }
 
-        public int ParentSubjectCode
+        public int? ParentSubjectCode
         {
             get;set;
         }
 
-        public int Level
+        public int? Level
         {
             get;set;
         }
@@ -27,7 +27,7 @@ namespace XinTuo.Finance.Models
             get;set;
         }
 
-        public int SubjectCategory
+        public int? SubjectCategory
         {
             get;set;
         }
@@ -37,7 +37,7 @@ namespace XinTuo.Finance.Models
             get;set;
         }
 
-        public int CompanyId
+        public int? CompanyId
         {
             get;set;
         }
@@ -93,7 +93,7 @@ namespace XinTuo.Finance.Models
             get;set;
         }
 
-        public DateTime CreateTime
+        public DateTime? CreateTime
         {
             get;set;
         }
@@ -103,7 +103,7 @@ namespace XinTuo.Finance.Models
             get;set;
         }
 
-        public DateTime LastUpdateTime
+        public DateTime? LastUpdateTime
         {
             get;set;
         }

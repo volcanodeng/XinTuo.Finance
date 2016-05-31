@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using XinTuo.Finance.Services;
-using System.Web.Http;
+using XinTuo.Finance.Models;
+
 
 namespace XinTuo.Finance.Controllers.API
 {
@@ -18,15 +19,15 @@ namespace XinTuo.Finance.Controllers.API
         }
 
         [HttpPost]
-        public IHttpActionResult GetSubjectByCode(int subjectCode)
+        public IHttpActionResult GetSubjectByCode([FromBody]MSubject subject)
         {
-            return Ok(_subjectService.GetSubjectByCode(subjectCode));
+            return Ok(_subjectService.GetSubjectByCode(subject.SubjectCode));
         }
 
         [HttpPost]
-        public IHttpActionResult GetSubjectsByCategory(int categoryId)
+        public IHttpActionResult GetSubjectsByCategory([FromBody]MSubjectCategory cate)
         {
-            return Ok(_subjectService.GetSubjectsByCategory(categoryId));
+            return Ok(_subjectService.GetSubjectsByCategory(cate.SubjectCategory));
         }
 
     }

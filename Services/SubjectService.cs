@@ -32,12 +32,20 @@ namespace XinTuo.Finance.Services
             _context = context;
         }
 
+        private List<MSubject> BindCategory(List<MSubject> subjects)
+        {
+            List<MSubjectCategory> cate = GetAllCategory();
+            subjects.ForEach(s => s.Category = cate.Where(c => c.SubjectCategory == s.SubjectCategory).FirstOrDefault());
+            return subjects;
+        }
+
         public MSubject GetSubjectByCode(int subjectCode)
         {
             string sql = string.Format("select * from [Finance_SubjectsRecord] where [SubjectCode] = {0}",subjectCode);
             DataTable dt = _dbHelper.ExecuteDataTable(sql);
 
-            return Utility.Convert<DataTable, List<MSubject>>(dt).FirstOrDefault();
+            List<MSubject> subjects = Utility.Convert<DataTable, List<MSubject>>(dt);
+            return BindCategory(subjects).FirstOrDefault();
         }
 
         public List<MSubject> GetSubjectsByCategory(int categoryId)
@@ -45,7 +53,8 @@ namespace XinTuo.Finance.Services
             string sql = "select * from [Finance_SubjectsRecord] sr " +
                          string.Format("where [SubjectCategory]={0} ", categoryId) +
                          string.Format("or exists(select 1 from Finance_SubjectCategoryRecord where sr.[SubjectCategory]=[SubjectCategory] and [ParentSubjectCategory]={0})", categoryId);
-            return Utility.Convert<MSubject>(_dbHelper.ExecuteDataTable(sql));
+            List<MSubject> subjects = Utility.Convert<MSubject>(_dbHelper.ExecuteDataTable(sql));
+            return BindCategory(subjects);
         }
 
         public List<MSubject> GetSubjectsByCode(int subjectCode)
@@ -59,7 +68,8 @@ namespace XinTuo.Finance.Services
                          ") " +
                          "select * from subjects ";
 
-            return Utility.Convert<MSubject>( _dbHelper.ExecuteDataTable(sql));
+            List<MSubject> subjects = Utility.Convert<MSubject>( _dbHelper.ExecuteDataTable(sql));
+            return BindCategory(subjects);
         }
 
         public List<MSubjectCategory> GetMainCategory()
