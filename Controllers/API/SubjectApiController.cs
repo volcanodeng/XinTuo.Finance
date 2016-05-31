@@ -30,5 +30,7 @@ namespace XinTuo.Finance.Controllers.API
             return Ok(_subjectService.GetSubjectsByCategory(cate.SubjectCategory));
         }
 
+        
+
     }
 }
