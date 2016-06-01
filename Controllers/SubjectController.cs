@@ -27,7 +27,8 @@ namespace XinTuo.Finance.Controllers
         {
             List<MSubjectCategory> sc = _subjectService.GetMainCategory();
             return new ShapeResult(this, _services.New.Setting_Subject(
-                GenCategory: sc
+                GenCategory: sc,
+                AllCategory: _subjectService.GetAllCategory()
                 ));
         }
     }

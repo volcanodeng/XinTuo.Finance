@@ -25,10 +25,9 @@
                         editor:{
 							type:'combobox',
 							options:{
-								valueField:'productid',
-								textField:'productname',
-								method:'get',
-								url:'products.json',
+								valueField:'subjectCategory',
+								textField:'categoryFullName',
+                                url:'/api/s/GetAllCategory',
 								required:true
 							}
 						}">@T("类别")</th>

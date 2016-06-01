@@ -30,7 +30,12 @@ namespace XinTuo.Finance.Controllers.API
             return Ok(_subjectService.GetSubjectsByCategory(cate.SubjectCategory));
         }
 
-        
+        [HttpGet]
+        [HttpPost]
+        public IHttpActionResult GetAllCategory()
+        {
+            return Ok(_subjectService.GetAllCategory());
+        }
 
     }
 }

@@ -83,5 +83,6 @@ namespace XinTuo.Finance.Services
             string sql = "select * from [Finance_SubjectCategoryRecord]";
             return Utility.Convert<MSubjectCategory>(_dbHelper.ExecuteDataTable(sql));
         }
+
     }
 }

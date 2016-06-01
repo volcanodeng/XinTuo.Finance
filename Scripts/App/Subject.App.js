@@ -1,9 +1,10 @@
 ﻿
 var valObj = {
-    Category: undefined,
-    EditIndex: undefined,
-    CurTableId:undefined
+    Category: undefined,        //目录id
+    EditIndex: undefined,       //grid的编辑行索引
+    CurTableId: undefined      //当前Tab的Grid ID   
 }
+
 
 function SearchSubject(cid)
 {
@@ -40,7 +41,6 @@ function endEditing() {
         return false;
     }
 }
-
 function onClickCell(index, field) {
     if (valObj.EditIndex != index) {
         if (endEditing()) {
@@ -63,5 +63,6 @@ function onEndEdit(index, row) {
         index: index,
         field: 'subjectCode'
     });
-    row.productname = $(ed.target).combobox('getText');
+    row.category.categoryFullName = $(ed.target).combobox('getText');
 }
+
