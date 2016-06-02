@@ -1,0 +1,61 @@
+﻿
+@{ 
+    Style.Require("MainSty").AtHead();
+
+    Script.Require("Subject.App").AtHead();
+}
+
+<div class="easyui-tabs" id="categoryTab" data-options="plain:true,onSelect:onTabSelected" style="width:700px;height:550px">
+    @foreach (XinTuo.Finance.Models.MSubjectCategory sc in Model.GenCategory)
+    {
+        string divName = "c" + sc.SubjectCategory.ToString();
+        string tableName = "t" + sc.SubjectCategory.ToString();
+    <text>
+    <div title="@sc.CategoryShortName" id="@divName" data-options="closable:false" style="padding:10px;">
+        <table class="easyui-datagrid" id="@tableName" style="width:auto;height:auto;"
+               data-options="fitColumns:true,singleSelect:true,toolbar: '#tb',fit:true,onClickCell: onClickCell,idField:'subjectCode'">
+            <thead>
+                <tr>
+                    <th data-options="field:'subjectCode',width:40,align:'center',editor:'numberbox'">@T("编码")</th>
+                    <th data-options="field:'subjectName',width:80,align:'center',editor:'textbox'">@T("名称")</th>
+                    <th data-options="field:'subjectCategory',width:40,align:'center',
+                        formatter: function(value,row,index){
+                            return row.category.categoryFullName;
+                        },
+                        editor:{
+							type:'combobox',
+							options:{
+								valueField:'subjectCategory',
+								textField:'categoryFullName',
+                                url:'/api/s/GetAllCategory',
+								required:true
+							}
+						}">@T("类别")</th>
+                    <th data-options="field:'balanceDirection',width:40,align:'center',
+                        editor:{
+							type:'combobox',
+							options:{
+                                panelHeight:40,
+								valueField:'id',
+								textField:'text',
+                                data:[{id:'借',text:'借'},{id:'贷',text:'贷'}],
+								required:true
+							}
+						}">@T("余额方向")</th>
+                    <th data-options="field:'subjectState',width:30,align:'center',formatter: function(value,row,index){if(value==1) return '正常'; else return '停用';}">@T("状态")</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    </text>
+    
+    }
+</div>
+
+<div id="tb" style="height:auto">
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="append()">Append</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="removeit()">Remove</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="accept()">Accept</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="reject()">Reject</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="getChanges()">GetChanges</a>
+</div>

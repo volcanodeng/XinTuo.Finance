@@ -30,10 +30,19 @@ function onTabSelected(title,index)
     }
 }
 
+function append(cid)
+{
+    $("#subjectDetail").dialog("open");
+}
 
+
+/*
 function endEditing() {
     if (valObj.EditIndex == undefined) { return true }
     if ($(valObj.CurTableId).datagrid('validateRow', valObj.EditIndex)) {
+        var ed = $(valObj.CurTableId).datagrid('getEditor', { index: valObj.EditIndex, field: 'subjectCategory' });
+        var categoryName = $(ed.target).combobox('getText');
+        $(valObj.CurTableId).datagrid('getRows')[valObj.EditIndex]['category'].categoryFullName = categoryName;
         $(valObj.CurTableId).datagrid('endEdit', valObj.EditIndex);
         valObj.EditIndex = undefined;
         return true;
@@ -44,8 +53,7 @@ function endEditing() {
 function onClickCell(index, field) {
     if (valObj.EditIndex != index) {
         if (endEditing()) {
-            $(valObj.CurTableId).datagrid('selectRow', index)
-                    .datagrid('beginEdit', index);
+            $(valObj.CurTableId).datagrid('selectRow', index).datagrid('beginEdit', index);
             var ed = $(valObj.CurTableId).datagrid('getEditor', { index: index, field: field });
             if (ed) {
                 ($(ed.target).data('textbox') ? $(ed.target).textbox('textbox') : $(ed.target)).focus();
@@ -58,11 +66,5 @@ function onClickCell(index, field) {
         }
     }
 }
-function onEndEdit(index, row) {
-    var ed = $(this).datagrid('getEditor', {
-        index: index,
-        field: 'subjectCode'
-    });
-    row.category.categoryFullName = $(ed.target).combobox('getText');
-}
 
+*/

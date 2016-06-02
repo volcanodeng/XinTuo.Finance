@@ -206,7 +206,9 @@
     <Content Include="Views\Setting.Subject.cshtml" />
     <Content Include="Views\web.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Setting.Subject1.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Views\Regist.Company.cshtml" />
