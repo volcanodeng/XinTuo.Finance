@@ -19,6 +19,8 @@ namespace XinTuo.Finance.Services
         List<MSubjectCategory> GetMainCategory();
 
         List<MSubjectCategory> GetAllCategory();
+
+        List<MSubjectCategory> GetCategorySelectable();
     }
 
     public class SubjectService : ISubjectService
@@ -81,6 +83,12 @@ namespace XinTuo.Finance.Services
         public List<MSubjectCategory> GetAllCategory()
         {
             string sql = "select * from [Finance_SubjectCategoryRecord]";
+            return Utility.Convert<MSubjectCategory>(_dbHelper.ExecuteDataTable(sql));
+        }
+
+        public List<MSubjectCategory> GetCategorySelectable()
+        {
+            string sql = "select * from [Finance_SubjectCategoryRecord] where [ParentSubjectCategory] in (select [SubjectCategory] from [Finance_SubjectCategoryRecord] where [ParentSubjectCategory] is null)";
             return Utility.Convert<MSubjectCategory>(_dbHelper.ExecuteDataTable(sql));
         }
 

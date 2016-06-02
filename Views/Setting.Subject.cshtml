@@ -5,6 +5,21 @@
     Script.Require("Subject.App").AtHead();
 }
 
+<style>
+    li{
+        list-style:none;
+        line-height:30px;
+    }
+    div.lab
+    {
+        display:inline-block;
+        padding-right:20px;
+    }
+    div.ctl
+    {
+        display:inline-block;
+    }
+</style>
 <div class="easyui-tabs" id="categoryTab" data-options="plain:true,onSelect:onTabSelected" style="width:700px;height:550px">
     @foreach (XinTuo.Finance.Models.MSubjectCategory sc in Model.GenCategory)
     {
@@ -39,20 +54,31 @@
     }
 </div>
 
-<div id="subjectDetail" class="easyui-dialog" title="编辑科目" style="width:400px;height:200px;" 
+<div id="subjectDetail" class="easyui-dialog" title="编辑科目" style="width:500px;height:700px;" 
      data-options="resizable:false,modal:true,closed: true">
         <ul>
             <li>
-                <div>科目代码</div>
-                <div><input class="easyui-textbox" data-options="required:true" style="width:300px"></div>
+                <div class="lab">科目代码</div>
+                <div class="ctl"><input class="easyui-textbox" data-options="required:true" style="width:200px"></div>
             </li>
             <li>
-                <div>科目名称</div>
-                <div><input class="easyui-textbox" data-options="required:true" style="width:300px"></div>
+                <div class="lab">科目名称</div>
+                <div class="ctl"><input class="easyui-textbox" data-options="required:true" style="width:200px"></div>
             </li>
             <li>
-                <div>上级科目</div>
-                <div><input class="easyui-textbox" data-options="required:true" style="width:300px"></div>
+                <div class="lab">上级科目</div>
+                <div class="ctl"><input class="easyui-textbox" data-options="required:true" style="width:200px"></div>
+            </li>
+            <li>
+                <div class="lab">科目类别</div>
+                <div class="ctl"><input id="category" class="easyui-combobox"  data-options="valueField:'subjectCategory',textField:'categoryFullName',url:'/api/s/GetSelectableCategory',width:200"></div>
+            </li>
+            <li>
+                <div class="lab">余额方向</div>
+                <div class="ctl">
+                    <input type="radio" name="dir" value="借" />借
+                    <input type="radio" name="dir" value="贷" />贷
+                </div>
             </li>
         </ul>
 </div>
