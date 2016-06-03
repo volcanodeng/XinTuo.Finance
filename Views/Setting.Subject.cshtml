@@ -29,11 +29,11 @@
     <text>
     <div title="@sc.CategoryShortName" id="@divName" data-options="closable:false" style="padding:10px;">
         <table class="easyui-datagrid" id="@tableName" style="width:auto;height:auto;"
-               data-options="fitColumns:true,singleSelect:true,toolbar: '#@toolbarId',fit:true,idField:'subjectCode'">
+               data-options="fitColumns:true,singleSelect:true,toolbar: '#@toolbarId',fit:true,idField:'subjectCode',onSelect:onGridSelect">
             <thead>
                 <tr>
                     <th data-options="field:'subjectCode',width:40,align:'center'">@T("编码")</th>
-                    <th data-options="field:'subjectName',width:80,align:'center'">@T("名称")</th>
+                    <th data-options="field:'subjectName',width:80">@T("名称")</th>
                     <th data-options="field:'subjectCategory',width:40,align:'center',
                         formatter: function(value,row,index){
                             return row.category.categoryFullName;
@@ -46,7 +46,7 @@
     </div>
     <div id="@toolbarId" style="height:auto">
         <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="append(@sc.SubjectCategory)">新增</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="getChanges(@sc.SubjectCategory)">编辑</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="edit(@sc.SubjectCategory)">编辑</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="removeit(@sc.SubjectCategory)">删除</a>
     </div>
     </text>
@@ -54,31 +54,35 @@
     }
 </div>
 
-<div id="subjectDetail" class="easyui-dialog" title="编辑科目" style="width:500px;height:700px;" 
+<div id="subjectDetail" class="easyui-dialog" title="编辑科目" style="width:500px;height:500px;" 
      data-options="resizable:false,modal:true,closed: true">
         <ul>
             <li>
                 <div class="lab">科目代码</div>
-                <div class="ctl"><input class="easyui-textbox" data-options="required:true" style="width:200px"></div>
+                <div class="ctl"><input id="sCode" class="easyui-textbox" data-options="required:true" style="width:200px"></div>
             </li>
             <li>
                 <div class="lab">科目名称</div>
-                <div class="ctl"><input class="easyui-textbox" data-options="required:true" style="width:200px"></div>
+                <div class="ctl"><input id="sName" class="easyui-textbox" data-options="required:true" style="width:200px"></div>
             </li>
             <li>
                 <div class="lab">上级科目</div>
-                <div class="ctl"><input class="easyui-textbox" data-options="required:true" style="width:200px"></div>
+                <div class="ctl"><input id="pSCode" class="easyui-textbox" data-options="required:true" style="width:200px"></div>
             </li>
             <li>
                 <div class="lab">科目类别</div>
-                <div class="ctl"><input id="category" class="easyui-combobox"  data-options="valueField:'subjectCategory',textField:'categoryFullName',url:'/api/s/GetSelectableCategory',width:200"></div>
+                <div class="ctl"><input id="sCategory" class="easyui-combobox"  data-options="valueField:'subjectCategory',textField:'categoryFullName',url:'/api/s/GetSelectableCategory',width:200"></div>
             </li>
             <li>
                 <div class="lab">余额方向</div>
                 <div class="ctl">
-                    <input type="radio" name="dir" value="借" />借
-                    <input type="radio" name="dir" value="贷" />贷
+                    <input type="radio"  name="dir" value="借" />借
+                    <input type="radio"  name="dir" value="贷" />贷
                 </div>
             </li>
+            <li><div style="text-align:center">
+                <input type="button" value="保存" />
+                
+                </div></li>
         </ul>
 </div>

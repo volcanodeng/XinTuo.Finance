@@ -24,7 +24,7 @@ namespace XinTuo.Finance.Services
         {
             if(_database == null)
             {
-                _database = new SqlDatabase(_transaction.GetSession().Connection.ConnectionString + ";Password=sql$2014");
+                _database = new SqlDatabase(_transaction.GetSession().Connection.ConnectionString + ";Password=sql$2008");
             }
 
            return _database;

@@ -42,6 +42,23 @@ namespace XinTuo.Finance.Services
             _db = _dbHelper.GetDB();
         }
 
+        private int InitialCompanySubjects(MCompany com)
+        {
+            DataTable dt = _dbHelper.ExecuteDataTable(string.Format("select * from [Finance_SubjectsRecord] where [CompanyId]='{0}'", com.CompanyId));
+            int res = 0;
+            if (dt.Rows.Count == 0)
+            {
+                string sql = "INSERT INTO [Finance_SubjectsRecord]([SubjectCode],[ParentSubjectCode],[Level],[SubjectName],[SubjectCategory],[CompanyId],[BalanceDirection],[BeginBalance],[EndBalance],[SubjectState]" +
+                             ",[NamePath],[CodePath],[Debit],[Credit],[SubjectAmount],[Creator],[CreateTime],[LastUpdate],[LastUpdateTime]) " +
+                             string.Format("SELECT[SubjectCode],[ParentSubjectCode],[Level],[SubjectName],[SubjectCategory],'{0}',[BalanceDirection],[BeginBalance]", com.CompanyId) +
+                             string.Format(",[EndBalance],[SubjectState],[NamePath],[CodePath],[Debit],[Credit],[SubjectAmount],'{0}',GETDATE(),[LastUpdate],[LastUpdateTime]", _context.GetContext().HttpContext.User.Identity.Name) +
+                             " FROM[Finance_SubjectsRecord] where [CompanyId]='00000000-0000-0000-0000-000000000000' ";
+                res = _dbHelper.ExecuteNonQuery(sql);
+            }
+
+            return res;
+        }
+
         public List<MRegion> GetRegions(int? RegionId)
         {
             string sql = string.Empty;
@@ -104,7 +121,7 @@ namespace XinTuo.Finance.Services
             if(dt.Rows.Count == 0)
             {
                 dt.Rows.Add(dt.NewRow());
-                dt.Rows[0]["CompanyId"] = Guid.NewGuid().ToString("N");
+                dt.Rows[0]["CompanyId"] = Guid.NewGuid();
             }
             else
             {
@@ -125,6 +142,13 @@ namespace XinTuo.Finance.Services
             dt.Rows[0]["ContactsUserAccount"] = _context.GetContext().CurrentUser.Id;
 
             int res = _dbHelper.UpdateDatatable(dt, sql);
+
+            //新建公司要初始化该公司的财务科目
+            if(res > 0)
+            {
+                InitialCompanySubjects(com);
+            }
+
             return res;
         }
 

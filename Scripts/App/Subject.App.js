@@ -2,7 +2,8 @@
 var valObj = {
     Category: undefined,        //目录id
     EditIndex: undefined,       //grid的编辑行索引
-    CurTableId: undefined      //当前Tab的Grid ID   
+    CurTableId: undefined,      //当前Tab的Grid ID   
+    data:[]                     //列表绑定的数据（数据总和）
 }
 
 
@@ -17,6 +18,7 @@ function SearchSubject(cid)
             },
             function (data) {
                 $(valObj.CurTableId).datagrid("loadData", data);
+                $.merge(valObj.data, data);
             }
             );
     }
@@ -35,6 +37,31 @@ function append(cid)
     $("#subjectDetail").dialog("open");
 }
 
+function edit(cid) {
+    $("#subjectDetail").dialog("open");
+}
+
+function onGridSelect(index,row)
+{
+    var pSubject = $.grep(valObj.data, function (n, i) {return n.subjectCode == row.parentSubjectCode });
+
+    $("#sCode").textbox("setValue", row.subjectCode); $("#sCode").textbox("disable");
+    $("#sName").textbox("setValue", row.subjectName);
+    if (row.parentSubjectCode || row.parentSubjectCode == undefined)
+        $("#pSCode").textbox("setValue", "无上级科目");
+    else
+        $("#pSCode").textbox("setValue", row.parentSubjectCode + " " + (pSubject.length > 0 ? pSubject[0].subjectName : ""));
+    $("#pSCode").textbox("disable");
+
+    $("#sCategory").combobox("setValue", row.subjectCategory); $("#sCategory").combobox("disable");
+    $("input:radio[name='dir'][value='" + row.balanceDirection + "']").attr('checked', true); $("input:radio[name='dir']").attr("disabled", true);
+    
+}
+
+function saveSubject()
+{
+
+}
 
 /*
 function endEditing() {

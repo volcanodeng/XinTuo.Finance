@@ -37,7 +37,7 @@ namespace XinTuo.Finance.Models
             get;set;
         }
 
-        public int? CompanyId
+        public Guid CompanyId
         {
             get;set;
         }
