@@ -16,6 +16,8 @@ namespace XinTuo.Finance.Services
 
         List<MSubject> GetSubjectsByCode(int subjectCode);
 
+        int SaveSubject(MSubject subject);
+
         List<MSubjectCategory> GetMainCategory();
 
         List<MSubjectCategory> GetAllCategory();

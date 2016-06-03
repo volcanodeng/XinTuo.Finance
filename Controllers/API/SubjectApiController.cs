@@ -43,5 +43,11 @@ namespace XinTuo.Finance.Controllers.API
         {
             return Ok(_subjectService.GetCategorySelectable());
         }
+
+        [HttpPost]
+        public IHttpActionResult SaveSubject([FromBody]MSubject subject)
+        {
+            return Ok(_subjectService.SaveSubject(subject));
+        }
     }
 }

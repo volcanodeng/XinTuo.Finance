@@ -60,7 +60,9 @@ function onGridSelect(index,row)
 
 function saveSubject()
 {
-
+    $.post("/api/s/SaveSubject",
+        {},
+        function (data) { });
 }
 
 /*
