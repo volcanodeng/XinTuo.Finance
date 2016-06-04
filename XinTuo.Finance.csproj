@@ -160,6 +160,7 @@
     <Content Include="Assets\Styles.less" />
     <Content Include="Scripts\App\Company.App.js" />
     <Content Include="Scripts\App\Subject.App.js" />
+    <Content Include="Scripts\App\Voucher.App.js" />
     <Content Include="Scripts\easyui-lang-zh_CN.js" />
     <Content Include="Scripts\easyui.extend.js" />
     <Content Include="Scripts\jquery.easyui.min.js" />
@@ -212,6 +213,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Views\Regist.Company.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Voucher.Entry.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

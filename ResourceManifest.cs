@@ -25,6 +25,9 @@ namespace XinTuo.Finance
 
             //科目设置
             manifest.DefineScript("Subject.App").SetUrl("App/Subject.App.js").SetDependencies("Easyui.cn", "Easyui.Extend");
+
+            //凭证录入、查询
+            manifest.DefineScript("Voucher.App").SetUrl("App/Voucher.App.js").SetDependencies("Easyui.cn", "Easyui.Extend");
         }
     }
 }
