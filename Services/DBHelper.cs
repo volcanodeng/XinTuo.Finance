@@ -1,22 +1,21 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
-using NHibernate;
-using NHibernate.Impl;
+using Orchard;
+using Orchard.Environment.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
-using Orchard;
-using Orchard.Data;
 
 
 namespace XinTuo.Finance.Services
 {
     public  class DBHelper : ISingletonDependency
     {
-        private readonly ITransactionManager _transaction;
-        public DBHelper(ITransactionManager tran)
+        private readonly ShellSettings _shellSettings;
+
+        public DBHelper(ShellSettings shellSettings)
         {
-            _transaction = tran;
+            _shellSettings = shellSettings;
         }
 
         private static Database _database;
@@ -24,7 +23,7 @@ namespace XinTuo.Finance.Services
         {
             if(_database == null)
             {
-                _database = new SqlDatabase(_transaction.GetSession().Connection.ConnectionString + ";Password=sql$2008");
+                _database = new SqlDatabase(_shellSettings.DataConnectionString);
             }
 
            return _database;

@@ -61,7 +61,12 @@ function onGridSelect(index,row)
 function saveSubject()
 {
     $.post("/api/s/SaveSubject",
-        {},
+        { 
+            SubjectCode: $("#sCode").textbox("getValue"),
+            SubjectName: $("#sName").textbox("getValue"),
+            ParentSubjectCode: $("#pSCodeHidden").val(),
+            BalanceDirection: $("#subjectDetail :radio:checked").val()
+        },
         function (data) { });
 }
 
