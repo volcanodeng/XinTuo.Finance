@@ -81,8 +81,15 @@
                     <input type="radio"  name="dir" value="贷" />贷
                 </div>
             </li>
+            <li>
+                <span>
+                    <input type="checkbox" id="aux" name="auxCheck"/>
+                    <label for="=auxCheck">辅助核算</label>
+                </span>
+                <div id="auxItemList"></div>
+            </li>
             <li><div style="text-align:center">
-                <input type="button" value="保存" />
+                <input type="button" value="保存" onclick="saveSubject()"/>
                 
                 </div></li>
         </ul>
