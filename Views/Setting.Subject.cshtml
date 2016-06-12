@@ -1,6 +1,6 @@
 ﻿
 @{ 
-    Style.Require("MainSty").AtHead();
+    Style.Require("MainSty").AtFoot();
 
     Script.Require("Subject.App").AtHead();
 }
@@ -19,6 +19,7 @@
     {
         display:inline-block;
     }
+    
 </style>
 <div class="easyui-tabs" id="categoryTab" data-options="plain:true,onSelect:onTabSelected" style="width:700px;height:550px">
     @foreach (XinTuo.Finance.Models.MSubjectCategory sc in Model.GenCategory)
@@ -56,41 +57,45 @@
 
 <div id="subjectDetail" class="easyui-dialog" title="编辑科目" style="width:500px;height:500px;" 
      data-options="resizable:false,modal:true,closed: true">
-        <ul>
-            <li>
+    <div class="subject-wrap">
+        <ul class="mod-form-rows">
+            <li class="row-item">
                 <div class="lab">科目代码</div>
                 <div class="ctl"><input id="sCode" class="easyui-textbox" data-options="required:true" style="width:200px"></div>
             </li>
-            <li>
+            <li class="row-item">
                 <div class="lab">科目名称</div>
                 <div class="ctl"><input id="sName" class="easyui-textbox" data-options="required:true" style="width:200px"></div>
             </li>
-            <li>
+            <li class="row-item">
                 <div class="lab">上级科目</div>
                 <div class="ctl"><input id="pSCode" class="easyui-textbox" data-options="required:true" style="width:200px"></div>
                 <input id="pSCodeHidden" type="hidden" />
             </li>
-            <li>
+            <li class="row-item">
                 <div class="lab">科目类别</div>
-                <div class="ctl"><input id="sCategory" class="easyui-combobox"  data-options="valueField:'subjectCategory',textField:'categoryFullName',url:'/api/s/GetSelectableCategory',width:200"></div>
+                <div class="ctl"><input id="sCategory" class="easyui-combobox" data-options="valueField:'subjectCategory',textField:'categoryFullName',url:'/api/s/GetSelectableCategory',width:200"></div>
             </li>
-            <li>
+            <li class="row-item">
                 <div class="lab">余额方向</div>
                 <div class="ctl">
-                    <input type="radio"  name="dir" value="借" />借
-                    <input type="radio"  name="dir" value="贷" />贷
+                    <input type="radio" name="dir" value="借" />借
+                    <input type="radio" name="dir" value="贷" />贷
                 </div>
             </li>
-            <li>
+            <li class="row-item adjust-wrap adjust-wrap-on">
                 <span>
-                    <input type="checkbox" id="aux" name="auxCheck"/>
-                    <label for="=auxCheck">辅助核算</label>
+                    <input type="checkbox" id="auxCheck" name="auxCheck" />
+                    <label for="auxCheck">辅助核算</label>
                 </span>
                 <div id="auxItemList"></div>
             </li>
-            <li><div style="text-align:center">
-                <input type="button" value="保存" onclick="saveSubject()"/>
-                
-                </div></li>
+            <li>
+                <div style="text-align:center">
+                    <input type="button" value="保存" onclick="saveSubject()" />
+
+                </div>
+            </li>
         </ul>
+    </div>
 </div>
