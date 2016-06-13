@@ -19,8 +19,7 @@ function SearchSubject(cid)
             function (data) {
                 $(valObj.CurTableId).datagrid("loadData", data);
                 $.merge(valObj.data, data);
-            }
-            );
+            });
     }
 }
 
@@ -32,13 +31,25 @@ function onTabSelected(title,index)
     }
 }
 
-function append(cid)
+function append()
 {
+    $("#sCode").textbox("setValue", ""); $("#sCode").textbox("enable");
+    $("#sName").textbox("setValue", ""); $("#sName").textbox("enable");
+    $("#pSCode").textbox("setValue", "无上级科目"); $("#pSCode").textbox("disable");
+    $("#sCategory").combobox("setValue", ""); $("#sCategory").combobox("enable");
+    $("input:radio[name='dir']:eq(0)").attr('checked', true); $("input:radio[name='dir']").attr("disabled", false);
+
     $("#subjectDetail").dialog("open");
 }
 
-function edit(cid) {
+function edit() {
+    onGridSelect($(valObj.CurTableId).datagrid("getRowIndex"), $(valObj.CurTableId).datagrid("getSelected"));
     $("#subjectDetail").dialog("open");
+}
+
+function appendSub()
+{
+
 }
 
 function onGridSelect(index,row)
@@ -55,7 +66,7 @@ function onGridSelect(index,row)
 
     $("#sCategory").combobox("setValue", row.subjectCategory); $("#sCategory").combobox("disable");
     $("input:radio[name='dir'][value='" + row.balanceDirection + "']").attr('checked', true); $("input:radio[name='dir']").attr("disabled", true);
-    
+    $("#subjectState").val(row.subjectState);
 }
 
 function saveSubject()
@@ -65,9 +76,19 @@ function saveSubject()
             SubjectCode: $("#sCode").textbox("getValue"),
             SubjectName: $("#sName").textbox("getValue"),
             ParentSubjectCode: $("#pSCodeHidden").val(),
-            BalanceDirection: $("#subjectDetail :radio:checked").val()
+            BalanceDirection: $("#subjectDetail :radio:checked").val(),
+            SubjectCategory: $("#sCategory").combobox("getValue"),
+            SubjectState:$("#subjectState").val()
         },
-        function (data) { });
+        function (data) {
+            if (data == 1) {
+                $("#subjectDetail").dialog("close");
+
+                //清除旧数据重新读取数据
+                $(valObj.CurTableId).datagrid("loadData", []);
+                SearchSubject(valObj.Category);
+            }
+        });
 }
 
 /*

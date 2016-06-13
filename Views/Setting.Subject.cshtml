@@ -46,9 +46,10 @@
         </table>
     </div>
     <div id="@toolbarId" style="height:auto">
-        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="append(@sc.SubjectCategory)">新增</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="edit(@sc.SubjectCategory)">编辑</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="removeit(@sc.SubjectCategory)">删除</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="append()">新增</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="appendSub()">新增下级</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="edit()">编辑</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-options="plain:true" onclick="remove()">删除</a>
     </div>
     </text>
     
@@ -79,7 +80,7 @@
             <li class="row-item">
                 <div class="lab">余额方向</div>
                 <div class="ctl">
-                    <input type="radio" name="dir" value="借" />借
+                    <input type="radio" name="dir" value="借" checked="checked" />借
                     <input type="radio" name="dir" value="贷" />贷
                 </div>
             </li>
@@ -94,6 +95,9 @@
                 <div style="text-align:center">
                     <input type="button" value="保存" onclick="saveSubject()" />
 
+                </div>
+                <div>
+                    <input type="hidden" id="subjectState"/>
                 </div>
             </li>
         </ul>

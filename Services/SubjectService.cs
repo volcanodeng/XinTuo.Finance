@@ -50,6 +50,23 @@ namespace XinTuo.Finance.Services
             return subjects;
         }
 
+        private int SubjectLevel(int subjectCode)
+        {
+            switch(subjectCode.ToString().Length)
+            {
+                case 4:
+                    return 1;
+                case 6:
+                    return 2;
+                case 8:
+                    return 3;
+                case 10:
+                    return 4;
+                default:
+                    return 1;
+            }
+        }
+
         #endregion
 
         public MSubject GetSubjectByCode(int subjectCode)
@@ -97,15 +114,18 @@ namespace XinTuo.Finance.Services
                 dr = dt.NewRow();
                 dr["SubjectCode"] = subject.SubjectCode;
                 dr["CompanyId"] = com.CompanyId;
+                subject.SubjectState = 1;
                 dt.Rows.Add(dr);
             }
             else
             {
                 dr = dt.Rows[0];
             }
-            
-            dr["ParentSubjectCode"] = subject.ParentSubjectCode;
-            dr["Level"] = subject.Level;
+            if (subject.ParentSubjectCode.HasValue)
+                dr["ParentSubjectCode"] = subject.ParentSubjectCode;
+            else
+                dr["ParentSubjectCode"] = DBNull.Value;
+            dr["Level"] = SubjectLevel(subject.SubjectCode);
             dr["SubjectName"] = subject.SubjectName;
             dr["SubjectCategory"] = subject.SubjectCategory;
             dr["BalanceDirection"] = subject.BalanceDirection;
@@ -114,7 +134,7 @@ namespace XinTuo.Finance.Services
             dr["SubjectState"] = subject.SubjectState;
 
             dr["NamePath"] = dr["NamePath"].ToString() + "," + subject.SubjectName;
-            dr["CodePath"] = dr["CodePath"].ToString() + "," + subject.SubjectCode; ;
+            dr["CodePath"] = dr["CodePath"].ToString() + "," + subject.SubjectCode; 
 
             int res = _dbHelper.UpdateDatatable(dt, sql);
             return res;
