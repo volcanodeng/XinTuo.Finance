@@ -33,8 +33,9 @@
                data-options="fitColumns:true,singleSelect:true,toolbar: '#@toolbarId',fit:true,idField:'subjectCode',onSelect:onGridSelect">
             <thead>
                 <tr>
-                    <th data-options="field:'subjectCode',width:40,align:'center'">@T("编码")</th>
-                    <th data-options="field:'subjectName',width:80">@T("名称")</th>
+                    <th data-options="field:'subjectCode',width:40,align:'left'" >@T("编码")</th>
+                    <th data-options="field:'subjectName',width:120,
+                        formatter: subNameFormatter" >@T("名称")</th>
                     <th data-options="field:'subjectCategory',width:40,align:'center',
                         formatter: function(value,row,index){
                             return row.category.categoryFullName;

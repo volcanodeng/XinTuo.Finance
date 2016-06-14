@@ -49,7 +49,26 @@ function edit() {
 
 function appendSub()
 {
+    var selRow = $(valObj.CurTableId).datagrid("getSelected");
+    if (!selRow)
+    {
+        $.messager.alert('选择科目', '请选择要新增下级的科目。', 'warning');
+        return;
+    }
+    var lastOne = $($.grep(valObj.data, function (n, i) { return n.parentSubjectCode == selRow.subjectCode })).last();
+    if(lastOne && lastOne.length>0)
+    {
+        $("#sCode").textbox("setValue", lastOne[0].subjectCode+1);
+    }
+    else
+    {
+        $("#sCode").textbox("setValue", selRow.subjectCode+"01");
+    }
+    $("#sName").textbox("setValue", "");
+    $("#pSCode").textbox("setValue", selRow.subjectCode);
+    $("input:radio[name='dir']").attr("disabled", false);
 
+    $("#subjectDetail").dialog("open");
 }
 
 function onGridSelect(index,row)
@@ -89,6 +108,16 @@ function saveSubject()
                 SearchSubject(valObj.Category);
             }
         });
+}
+
+function subNameFormatter(value, row, index)
+{
+    var blank = "";
+    for(var i=1;i<row.level;i++)
+    {
+        blank += "&nbsp;&nbsp;";
+    }
+    return blank + value;
 }
 
 /*

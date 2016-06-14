@@ -82,7 +82,8 @@ namespace XinTuo.Finance.Services
         {
             string sql = "select * from [Finance_SubjectsRecord] sr " +
                          string.Format("where ([SubjectCategory]={0} ", categoryId) +
-                         string.Format("or exists(select 1 from Finance_SubjectCategoryRecord where sr.[SubjectCategory]=[SubjectCategory] and [ParentSubjectCategory]={0})) and [CompanyId] = '{1}' ", categoryId,_curCompany.CompanyId);
+                         string.Format("or exists(select 1 from Finance_SubjectCategoryRecord where sr.[SubjectCategory]=[SubjectCategory] and [ParentSubjectCategory]={0})) and [CompanyId] = '{1}' ", categoryId,_curCompany.CompanyId)+
+                         " order by cast(subjectcode as nvarchar(50))";
             List<MSubject> subjects = Utility.Convert<MSubject>(_dbHelper.ExecuteDataTable(sql));
             return BindCategory(subjects);
         }
