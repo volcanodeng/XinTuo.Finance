@@ -49,5 +49,17 @@ namespace XinTuo.Finance.Controllers.API
         {
             return Ok(_subjectService.SaveSubject(subject));
         }
+
+        [HttpPost]
+        public IHttpActionResult GetCommonAuxAcc()
+        {
+            return Ok(_subjectService.GetCommonAuxAcc());
+        }
+
+        [HttpPost]
+        public IHttpActionResult GetCurCompanyAuxAcc()
+        {
+            return Ok(_subjectService.GetCurrentCompanyAuxAcc());
+        }
     }
 }

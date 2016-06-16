@@ -26,8 +26,11 @@ namespace XinTuo.Finance.Controllers
         public ActionResult Subject()
         {
             List<MSubjectCategory> sc = _subjectService.GetMainCategory();
+            List<MAuxAccounting> commonAux = _subjectService.GetCommonAuxAcc();
+
             return new ShapeResult(this, _services.New.Setting_Subject(
-                GenCategory: sc
+                GenCategory: sc,
+                CommonAux:commonAux
                 ));
         }
     }

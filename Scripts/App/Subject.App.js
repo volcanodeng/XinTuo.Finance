@@ -73,6 +73,12 @@ function appendSub()
 
 function onGridSelect(index,row)
 {
+    if (!row)
+    {
+        $.messager.alert("选择科目", '请选择要操作的科目。', 'warning');
+        return;
+    }
+
     var pSubject = $.grep(valObj.data, function (n, i) {return n.subjectCode == row.parentSubjectCode });
 
     $("#sCode").textbox("setValue", row.subjectCode); $("#sCode").textbox("disable");
@@ -86,6 +92,16 @@ function onGridSelect(index,row)
     $("#sCategory").combobox("setValue", row.subjectCategory); $("#sCategory").combobox("disable");
     $("input:radio[name='dir'][value='" + row.balanceDirection + "']").attr('checked', true); $("input:radio[name='dir']").attr("disabled", true);
     $("#subjectState").val(row.subjectState);
+
+    if(row.auxiliary && row.auxiliary.length>1)
+    {
+        $("#auxCheck").attr('checked', true);
+    }
+    else
+    {
+        $("#auxCheck").attr('checked', false);
+    }
+    auxChanged();
 }
 
 function saveSubject()
@@ -118,6 +134,19 @@ function subNameFormatter(value, row, index)
         blank += "&nbsp;&nbsp;";
     }
     return blank + value;
+}
+
+function auxChanged()
+{
+    
+    if ($("#auxCheck").is(':checked'))
+    {
+        $("#auxItemList").show();
+    }
+    else
+    {
+        $("#auxItemList").hide();
+    }
 }
 
 /*

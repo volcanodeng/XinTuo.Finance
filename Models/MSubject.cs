@@ -73,17 +73,22 @@ namespace XinTuo.Finance.Models
             get;set;
         }
 
-        public decimal Debit
+        public decimal? Debit
         {
             get;set;
         }
 
-        public decimal Credit
+        public decimal? Credit
         {
             get;set;
         }
 
-        public decimal SubjectAmount
+        public decimal? SubjectAmount
+        {
+            get;set;
+        }
+
+        public string Auxiliary
         {
             get;set;
         }

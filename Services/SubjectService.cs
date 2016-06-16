@@ -23,20 +23,24 @@ namespace XinTuo.Finance.Services
         List<MSubjectCategory> GetAllCategory();
 
         List<MSubjectCategory> GetCategorySelectable();
+
+        List<MAuxAccounting> GetCommonAuxAcc();
+
+        List<MAuxAccounting> GetCompanyAuxAcc(Guid comId);
+
+        List<MAuxAccounting> GetCurrentCompanyAuxAcc();
     }
 
     public class SubjectService : ISubjectService
     {
         private readonly DBHelper _dbHelper;
-        private readonly IWorkContextAccessor _context;
         private readonly ICompanyService _company;
 
         private MCompany _curCompany;
 
-        public SubjectService(DBHelper dbHelper, IWorkContextAccessor context,ICompanyService company)
+        public SubjectService(DBHelper dbHelper,ICompanyService company)
         {
             _dbHelper = dbHelper;
-            _context = context;
             _company = company;
 
             _curCompany = _company.GetCompanyWithCurrentUser();
@@ -159,5 +163,25 @@ namespace XinTuo.Finance.Services
             return Utility.Convert<MSubjectCategory>(_dbHelper.ExecuteDataTable(sql));
         }
 
+        public List<MAuxAccounting> GetCommonAuxAcc()
+        {
+            string sql = "select * from [Finance_AuxiliaryAccountingRecord] where [CompanyId] is null and creator='admin'";
+            return Utility.Convert<MAuxAccounting>(_dbHelper.ExecuteDataTable(sql));
+        }
+
+        public List<MAuxAccounting> GetCompanyAuxAcc(Guid comId)
+        {
+            string sql = string.Format("select * from [Finance_AuxiliaryAccountingRecord] where [CompanyId] = '{0}'",comId.ToString("D"));
+            return Utility.Convert<MAuxAccounting>(_dbHelper.ExecuteDataTable(sql));
+        }
+
+        public List<MAuxAccounting> GetCurrentCompanyAuxAcc()
+        {
+            MCompany curCom = _company.GetCompanyWithCurrentUser();
+            if (curCom != null)
+                return this.GetCompanyAuxAcc(curCom.CompanyId);
+            else
+                return new List<MAuxAccounting>();
+        }
     }
 }

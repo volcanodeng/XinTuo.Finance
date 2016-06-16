@@ -87,10 +87,23 @@
             </li>
             <li class="row-item adjust-wrap adjust-wrap-on">
                 <span>
-                    <input type="checkbox" id="auxCheck" name="auxCheck" />
+                    <input type="checkbox" id="auxCheck" name="auxCheck" onchange="auxChanged()" />
                     <label for="auxCheck">辅助核算</label>
                 </span>
-                <div id="auxItemList"></div>
+                <div id="auxItemList">
+                    @foreach(XinTuo.Finance.Models.MAuxAccounting aux in Model.CommonAux)
+                    {
+                        string chkId = "aux" + aux.AId.ToString();
+                        @:<span class="check-wrap"><input type="checkbox" id="@chkId" name="@chkId" />
+                        @:<label for="@chkId">@aux.AuxName</label></span>
+                    }
+                    <span>
+                        <label for="custom-assisting">自定义项：</label>
+                        <span id="custom-assisting">
+                            <input id="cc" class="easyui-combobox"  data-options="valueField:'aId',textField:'auxName',url:'/api/s/GetCurCompanyAuxAcc'">
+                        </span>
+                    </span>
+                </div>
             </li>
             <li>
                 <div style="text-align:center">
