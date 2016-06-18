@@ -144,6 +144,7 @@
     <Compile Include="Controllers\API\SubjectApiController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
+    <Compile Include="Controllers\VoucherController.cs" />
     <Compile Include="Models\MAuxAccounting.cs" />
     <Compile Include="Models\MCompany.cs" />
     <Compile Include="Models\MRegion.cs" />
@@ -155,6 +156,7 @@
     <Compile Include="Services\DBHelper.cs" />
     <Compile Include="Services\SubjectService.cs" />
     <Compile Include="Services\Utility.cs" />
+    <Compile Include="Services\VoucherService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets.json" />
@@ -187,6 +189,7 @@
     <Content Include="Styles\default\images\validatebox_warning.png" />
     <Content Include="Styles\Styles.css" />
     <Content Include="Styles\Styles.min.css" />
+    <Content Include="Styles\voucher.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\Web.config" />
     <Content Include="Styles\Web.config" />
@@ -207,9 +210,6 @@
   <ItemGroup>
     <Content Include="Views\Setting.Subject.cshtml" />
     <Content Include="Views\web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Setting.Subject1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
