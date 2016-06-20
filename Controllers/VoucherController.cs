@@ -13,6 +13,19 @@ namespace XinTuo.Finance.Controllers
 {
     public class VoucherController : Controller
     {
+        private readonly IOrchardServices _services;
+        private readonly IVoucherService _voucher;
 
+        public VoucherController(IOrchardServices services,IVoucherService voucherService)
+        {
+            _services = services;
+            _voucher = voucherService;
+        }
+
+        [Themed]
+        public ActionResult Voucher()
+        {
+            return new ShapeResult(this,_services.New.Voucher_Entry());
+        }
     }
 }

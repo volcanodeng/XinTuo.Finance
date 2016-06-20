@@ -150,6 +150,8 @@
     <Compile Include="Models\MRegion.cs" />
     <Compile Include="Models\MSubject.cs" />
     <Compile Include="Models\MSubjectCategory.cs" />
+    <Compile Include="Models\MVoucher.cs" />
+    <Compile Include="Models\MVoucherDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceManifest.cs" />
     <Compile Include="Services\CompanyService.cs" />
