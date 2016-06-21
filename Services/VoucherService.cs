@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+using Orchard;
 using XinTuo.Finance.Models;
 
 namespace XinTuo.Finance.Services
 {
-    public interface IVoucherService
+    public interface IVoucherService : IDependency
     {
         MVoucher GetVoucher(int vid);
 

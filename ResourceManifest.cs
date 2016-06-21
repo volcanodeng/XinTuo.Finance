@@ -13,7 +13,7 @@ namespace XinTuo.Finance
             //自定义的主样式
             manifest.DefineStyle("MainSty").SetUrl("Styles.css").SetDependencies("Easyui");
             //凭证样式
-            manifest.DefineStyle("voucher").SetUrl("voucher.css").SetDependencies("Easyui");
+            manifest.DefineStyle("voucher").SetUrl("voucher.css").SetDependencies("MainSty");
 
             //easyui库
             manifest.DefineScript("Easyui").SetUrl("jquery.easyui.min.js").SetDependencies("jQuery");
