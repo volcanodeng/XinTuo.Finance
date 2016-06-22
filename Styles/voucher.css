@@ -1,11 +1,11 @@
-﻿.wrapper { width: 1156px; }
+﻿
 .mod-toolbar-top { padding-right: 0; }
 #toolBottom{padding-bottom: 0;}
 .ui-combo-wrap .input-txt, .ui-droplist-wrap .list-item { font-size: 12px; }
 .ui-datepicker-input { font-size: 12px; }
 /*voucher_wrap*/
 #toolTop { border-bottom: 0; }
-.voucher_wrap { margin-left: 18px; padding: 15px 45px; width: 1048px; border: 1px solid #cfcfcf; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2); position: relative; }
+.voucher_wrap { margin-left: 18px; padding: 15px 45px;  border: 1px solid #cfcfcf; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.2); position: relative; }
 .voucher_tit { display: inline; margin-right: 20px; font: 28px/1.8 "Microsoft Yahei"; text-align: center; text-shadow: 1px 1px 1px rgba(0,0,0,0.2); }
 .voucher_top { padding-top: 20px; margin-bottom: 10px; overflow: hidden; zoom: 1; }
 .voucher_top .date_wrap { display: inline-block; *display:inline;
@@ -25,8 +25,8 @@ zoom: 1; line-height: 30px; vertical-align: middle; }
 .voucher .col_summary, .voucher .col_total{ border-left-width:2px;}
 .voucher .col_credit{ border-right-width:2px;}
 .col_quantity, .col_currency{ display:none; }
-.voucher td.col_debite, .voucher td.col_credit, .voucher td.col_money, .money_unit { background-image: url('img/money_rp.png'); background-repeat: repeat-y; }
-.voucher th { height: 48px; color: #555555; font-size: 14px; text-align: center; font-weight: bold; overflow: hidden; }
+.voucher td.col_debite, .voucher td.col_credit, .voucher td.col_money, .money_unit { background-image: url('images/money_rp.png'); background-repeat: repeat-y; }
+.voucher th { height: 48px; color: #555555; font-size: 14px; text-align: center; vertical-align:middle; font-weight: bold; overflow: hidden; }
 .voucher .col_money{ font-size:12px; }
 .voucher .col_money .tit { display: block; height: 25px; line-height: 25px; }
 .voucher .money_unit { height: 22px; line-height: 22px; font-weight: normal; border-top: 1px solid #dadada; text-align: center; }
@@ -45,12 +45,12 @@ zoom: 1; line-height: 30px; vertical-align: middle; }
 .voucher .col_subject .cell_val span{ font-size:12px; }
 .edit_summary, .edit_money, .edit_subject { float: left; outline: none; resize: none; border: 1px solid #999; box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 3px rgba(0,0,0,.6); height: 50px; padding: 4px; overflow: hidden; line-height:50px\9; }
 /*摘要*/
-.col_summary .cell_val { width: 240px; word-break: break-all; word-wrap: break-word; }
+.col_summary .cell_val { width: 140px; word-break: break-all; word-wrap: break-word; }
 .edit_summary { width: 244px; font-size: 14px; margin-right: -30px;padding-right: 30px;position: relative;}
 .voucher tbody .col_summary { border-right: 0; }
 /*科目*/
 .voucher tbody .col_subject { border-right: 0; }
-.subject-dtl {position: relative;top:0;bottom: 0;height: 100%;width: 295px;display: table;}
+.subject-dtl {position: relative;top:0;bottom: 0;height: 100%;width: 155px;display: table;}
 .col_subject .cell_val { width: 285px; word-break : break-all; word-wrap : break-word; }
 .edit_subject { width: 293px; padding-right: 26px; margin-right: -30px; font-size: 14px; position: relative; }
 .subject_val{line-height: 22px;height: 22px;margin: auto;vertical-align: middle;display: table-cell;}
@@ -147,7 +147,7 @@ text-align: right; }
 .voucher tbody tr.edit-row .curBalance { visibility:visible; }
 
 .voucher .col_total { padding: 0 10px; }
-.voucher .col_total { font-size: 14px; font-weight: bold; }
+.voucher .col_total { font-size: 14px; font-weight: bold; vertical-align:middle;}
 
 .vch_ft { font-size: 14px; }
 .ui-input-dis { background-color: #f0f0f0; color: #aaa; }
