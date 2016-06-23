@@ -150,6 +150,7 @@
     <Compile Include="Models\MRegion.cs" />
     <Compile Include="Models\MSubject.cs" />
     <Compile Include="Models\MSubjectCategory.cs" />
+    <Compile Include="Models\MSummary.cs" />
     <Compile Include="Models\MVoucher.cs" />
     <Compile Include="Models\MVoucherDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Services\CompanyService.cs" />
     <Compile Include="Services\DBHelper.cs" />
     <Compile Include="Services\SubjectService.cs" />
+    <Compile Include="Services\SummaryService.cs" />
     <Compile Include="Services\Utility.cs" />
     <Compile Include="Services\VoucherService.cs" />
   </ItemGroup>
@@ -189,6 +191,7 @@
     <Content Include="Styles\default\images\tabs_icons.png" />
     <Content Include="Styles\default\images\tree_icons.png" />
     <Content Include="Styles\default\images\validatebox_warning.png" />
+    <Content Include="Styles\Images\money_rp.png" />
     <Content Include="Styles\Styles.css" />
     <Content Include="Styles\Styles.min.css" />
     <Content Include="Styles\voucher.css" />
@@ -221,7 +224,10 @@
     <Content Include="Views\Voucher.Entry.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Images\" />
+    <Folder Include="Content\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\Rel.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

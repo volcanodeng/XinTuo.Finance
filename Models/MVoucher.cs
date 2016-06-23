@@ -22,10 +22,13 @@ namespace XinTuo.Finance.Models
             get;set;
         }
 
-        public string PaymentTerms
-        {
-            get;set;
-        }
+        /// <summary>
+        /// 暂不使用
+        /// </summary>
+        //public string PaymentTerms
+        //{
+        //    get;set;
+        //}
 
         public DateTime VoucherTime
         {
