@@ -227,6 +227,7 @@
     <Folder Include="Content\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bundleconfig.json" />
     <None Include="Properties\PublishProfiles\Rel.pubxml" />
   </ItemGroup>
   <PropertyGroup>
