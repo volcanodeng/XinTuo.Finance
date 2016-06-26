@@ -25,7 +25,8 @@ zoom: 1; line-height: 30px; vertical-align: middle; }
 .voucher .col_summary, .voucher .col_total{ border-left-width:2px;}
 .voucher .col_credit{ border-right-width:2px;}
 .col_quantity, .col_currency{ display:none; }
-.voucher td.col_debite, .voucher td.col_credit, .voucher td.col_money, .money_unit { background-image: url('images/money_rp.png'); background-repeat: repeat-y; }
+/*.voucher td.col_debite, .voucher td.col_credit, .voucher td.col_money, .money_unit { background-image: url('images/money_rp.png'); background-repeat: repeat-y; }*/
+.datagrid-btable td[field="cc"] .col_debite,.datagrid-btable td[field="dd"] .col_credit, .datagrid-htable td[field="cc"] .money_unit, .datagrid-htable td[field="dd"] .money_unit { background-image: url('images/money_rp.png'); background-repeat: repeat-y; }
 .voucher th { height: 48px; color: #555555; font-size: 14px; text-align: center; vertical-align:middle; font-weight: bold; overflow: hidden; }
 .voucher .col_money{ font-size:12px; }
 .voucher .col_money .tit { display: block; height: 25px; line-height: 25px; }
