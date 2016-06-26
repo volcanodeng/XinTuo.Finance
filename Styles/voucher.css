@@ -29,9 +29,9 @@ zoom: 1; line-height: 30px; vertical-align: middle; }
 .voucher th { height: 48px; color: #555555; font-size: 14px; text-align: center; vertical-align:middle; font-weight: bold; overflow: hidden; }
 .voucher .col_money{ font-size:12px; }
 .voucher .col_money .tit { display: block; height: 25px; line-height: 25px; }
-.voucher .money_unit { height: 22px; line-height: 22px; font-weight: normal; border-top: 1px solid #dadada; text-align: center; }
-.voucher .money_unit span { float: left; display: inline; width: 19px; height: 100%; margin-right: 1px; background-color: #fff; }
-.voucher .money_unit .last { margin-right: 0; width:18px;}
+.datagrid-cell .money_unit { height: 22px; line-height: 22px; font-weight: normal; border-top: 1px solid #dadada; text-align: center; }
+.datagrid-cell .money_unit span { float: left; display: inline; width: 19px; height: 100%; margin-right: 1px; background-color: #fff; }
+.datagrid-cell .money_unit .last { margin-right: 0; width:18px;}
 .voucher td { height: 60px; }
 /*增减行*/
 .operate { visibility:hidden; width:26px; }
@@ -70,8 +70,8 @@ zoom: 1; line-height: 30px; vertical-align: middle; }
 .curBalance .balance{color: #aaa;}
 .curBalance .balance:hover{color:#2383c0; text-decoration: underline;}
 /*借贷金额*/
-.voucher .col_debite, .voucher .col_credit, .voucher .col_money { width: 218px; }
-.voucher .col_debite .cell_val, .voucher .col_credit .cell_val { overflow: hidden; font-family: 'tahoma'; font-weight: bold; font-size: 14px; letter-spacing: 11px; overflow: hidden; position: relative; right: -5px; *right: 4px;
+.datagrid-cell .col_debite, .datagrid-cell .col_credit, .datagrid-cell .col_money { width: 218px; }
+.datagrid-cell .col_debite .cell_val, .datagrid-cell .col_credit .cell_val { overflow: hidden; font-family: 'tahoma'; font-weight: bold; font-size: 14px; letter-spacing: 11px; overflow: hidden; position: relative; right: -5px; *right: 4px;
 text-align: right; }
 .money-negative{color:#dd4e4e;}
 

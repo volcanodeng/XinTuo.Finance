@@ -1,2 +1,6 @@
 ﻿
 
+function aa()
+{
+    $("#voucher").datagrid();
+}
