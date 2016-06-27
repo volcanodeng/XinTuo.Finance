@@ -1,6 +1,6 @@
 ﻿
 
-function aa()
+function saveVoucher()
 {
-    $("#voucher").datagrid();
+
 }

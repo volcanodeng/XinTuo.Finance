@@ -37,6 +37,11 @@ namespace XinTuo.Finance.Models
             get;set;
         }
 
+        public int Quantity
+        {
+            get;set;
+        }
+
         public MVoucher Voucher
         {
             get;set;
