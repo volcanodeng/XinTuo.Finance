@@ -10,7 +10,7 @@
     <div class="mod-toolbar-top">
         <div class="left">
             <a class="button primaryAction" id="add">新增</a>
-            <a class="button" id="edit">保存</a>
+            <a class="button" id="edit" onclick="saveVoucher()">保存</a>
             <a class="button" id="print">打印</a>
             <a class="button" id="audit">审核</a>
             <a class="button" id="copy">复制</a>
@@ -26,8 +26,8 @@
         <div class="voucher_top">
             <div class="mark_wrap">
                 <span class="txt">凭证字</span>
-                <input id="cw" class="easyui-combobox"  data-options="valueField:'id',textField:'text',width:60,height:30">
-                <input id="ss" class="easyui-numberspinner"  data-options="min:10,max:100,width:60,height:30">
+                <input id="cw" class="easyui-combobox"  data-options="valueField:'certificateWord',textField:'certificateWord',url:'/api/v/GetCertWords',width:60,height:30">
+                <input id="ss" class="easyui-numberspinner"  data-options="min:1,max:999,width:60,height:30">
                 <span class="txt">号</span>
                 <span class="date_wrap">
                     <span class="txt">日期</span>
@@ -40,7 +40,7 @@
             </div>
             <span class="attach_wrap">
                 附单据
-                <input type="text" class="easyui-numberbox" value="0" data-options="min:0,width:60,height:30">
+                <input type="text" id="attCw" class="easyui-numberbox" value="0" data-options="min:0,width:60,height:30">
                 张
             </span>
         </div>

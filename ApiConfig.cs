@@ -44,7 +44,7 @@ namespace XinTuo.Finance
         private void ConfigAutomapper(ContainerBuilder builder)
         {
             builder.RegisterType(typeof(XinTuo.Finance.AutoMapperProfiles.CompanyProfile)).As<Profile>();
-
+            
             builder.Register(context =>
             {
                 //读取所有已注册的automapper profile
@@ -69,7 +69,7 @@ namespace XinTuo.Finance
             {
                 var ctx = tempContext.Resolve<IComponentContext>();
                 var config = ctx.Resolve<MapperConfiguration>();
-
+                
                 return config.CreateMapper();
             }).As<IMapper>();
 

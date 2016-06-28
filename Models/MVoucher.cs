@@ -60,7 +60,7 @@ namespace XinTuo.Finance.Models
             get;set;
         }
 
-        public DateTime ReviewTime
+        public DateTime? ReviewTime
         {
             get;set;
         }

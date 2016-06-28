@@ -24,11 +24,13 @@ namespace XinTuo.Finance.Services
     {
         private DBHelper _dbHelper;
         private IWorkContextAccessor _context;
+        private ICompanyService _company;
 
-        public VoucherService(DBHelper dbHelper,IWorkContextAccessor context)
+        public VoucherService(DBHelper dbHelper,IWorkContextAccessor context,ICompanyService company)
         {
             _dbHelper = dbHelper;
             _context = context;
+            _company = company;
         }
 
         #region 私有方法
@@ -92,14 +94,18 @@ namespace XinTuo.Finance.Services
             string sql = string.Format("select * from [Finance_VoucherRecord] where [VId] = {0}",voucher.VId);
             DataTable dt = _dbHelper.ExecuteDataTable(sql);
 
+            object newId = null;
             DataRow dr = dt.NewRow();
             if(dt.Rows.Count > 0)
             {
                 dr = dt.Rows[0];
+
+                newId = Convert.ToInt32(dr["VId"]);
             }
             else
             {
-                dr["CompanyId"] = voucher.CompanyId;
+                MCompany com = _company.GetCompanyWithCurrentUser();
+                dr["CompanyId"] = com.CompanyId;
                 dr["Creator"] = _context.GetContext().CurrentUser.UserName;
                 dr["CreateTime"] = DateTime.Now;
 
@@ -112,10 +118,11 @@ namespace XinTuo.Finance.Services
             dr["AttachedInvoices"] = voucher.AttachedInvoices;
 
             int res = _dbHelper.UpdateDatatable(dt, sql);
+            if (newId == null) newId = _dbHelper.ExecuteScalar("SELECT IDENT_CURRENT('Finance_VoucherRecord')");
 
             if(res > 0)
             {
-                res += SaveVoucherDetail(Convert.ToInt32(dr["vid"]), voucher.VoucherDetails);
+                res += SaveVoucherDetail(Convert.ToInt32(newId), voucher.VoucherDetails);
             }
 
             return res;
@@ -125,11 +132,11 @@ namespace XinTuo.Finance.Services
         {
             string sql = string.Format("select * from [Finance_VoucherDetailRecord] where [VId]={0}",vid);
             DataTable dt = _dbHelper.ExecuteDataTable(sql);
-
-            foreach(MVoucherDetail vd in details)
+            int dtRowCount = dt.Rows.Count;
+            DataRow dr;
+            foreach (MVoucherDetail vd in details)
             {
-                DataRow dr = dt.AsEnumerable().Where(r => r.Field<int>("VdId") == vd.VdId).FirstOrDefault();
-                if(dr == null)
+                if (dtRowCount == 0 || (dr = dt.AsEnumerable().Where(r => r.Field<int>("VdId") == vd.VdId).FirstOrDefault()) == null)
                 {
                     dr = dt.NewRow();
                     dr["VId"] = vid;

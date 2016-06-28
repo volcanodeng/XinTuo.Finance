@@ -30,6 +30,16 @@ namespace XinTuo.Finance
                         controller="SubjectApi",
                         id=RouteParameter.Optional
                     }
+                },
+                new HttpRouteDescriptor {
+                    Name="Voucher Api",
+                    Priority=0,
+                    RouteTemplate="api/v/{action}/{id}",
+                    Defaults=new {
+                        area="XinTuo.Finance",
+                        controller="VoucherApi",
+                        id=RouteParameter.Optional
+                    }
                 }
             };
         }
