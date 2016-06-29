@@ -14,6 +14,8 @@ namespace XinTuo.Finance.Services
 
         MVoucher[] GetVouchers(Guid companyId);
 
+        MVoucher[] GetVouchers();
+
         MVoucher GetVoucher(Guid companyId, string certWord, int certWordSn);
 
         int SaveVoucher(MVoucher voucher);
@@ -59,6 +61,12 @@ namespace XinTuo.Finance.Services
                 BindVoucherDetail(v);
             }
             return vouchers.ToArray();
+        }
+
+        public MVoucher[] GetVouchers()
+        {
+            MCompany com = _company.GetCompanyWithCurrentUser();
+            return GetVouchers(com.CompanyId);
         }
 
         public MVoucher GetVoucher(int vid)

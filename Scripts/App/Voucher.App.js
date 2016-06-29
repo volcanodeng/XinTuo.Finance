@@ -1,4 +1,8 @@
 ﻿
+$(function () {
+    $("")
+});
+
 
 function saveVoucher()
 {
@@ -39,3 +43,4 @@ function saveVoucher()
             }
         });
 }
+
