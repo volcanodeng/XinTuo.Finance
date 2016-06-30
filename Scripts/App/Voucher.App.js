@@ -9,8 +9,10 @@ $(function () {
 function loadVoucher()
 {
     $.get('/api/v/GetComVouchers', function (data) {
-        $("#voucherTab").datagrid("loadData", data[data.length - 1].voucherDetails);
-        $("#voucherTab").datagrid("enableCellEditing");
+        if (data && data.length > 0) {
+            $("#voucherTab").datagrid("loadData", data[data.length - 1].voucherDetails);
+            $("#voucherTab").datagrid("enableCellEditing");
+        }
     });
 
     
