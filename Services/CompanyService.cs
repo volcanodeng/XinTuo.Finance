@@ -154,7 +154,7 @@ namespace XinTuo.Finance.Services
 
         public MCompany GetCompany(Guid comId)
         {
-            DataTable dt = _dbHelper.ExecuteDataTable(string.Format("select * from [Finance_CompanyRecord] where [CompanyId]='{0}'", comId.ToString("N")));
+            DataTable dt = _dbHelper.ExecuteDataTable(string.Format("select * from [Finance_CompanyRecord] where [CompanyId]='{0}'", comId.ToString("D")));
             if (dt.Rows.Count == 0) return new MCompany();
 
             MCompany com = Utility.Convert<DataTable, List<MCompany>>(dt).FirstOrDefault();
@@ -165,7 +165,7 @@ namespace XinTuo.Finance.Services
 
         public MCompany GetCompanyWithCurrentUser()
         {
-            if (_context.GetContext() == null || _context.GetContext().CurrentUser == null) return new MCompany(); 
+            if (_context.GetContext() == null || _context.GetContext().CurrentUser == null) return null; 
 
             DataTable dt = _dbHelper.ExecuteDataTable(string.Format("select * from [Finance_CompanyRecord] where [ContactsUserAccount] = {0}", _context.GetContext().CurrentUser.Id));
 

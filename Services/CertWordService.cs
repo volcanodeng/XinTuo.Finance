@@ -28,9 +28,15 @@ namespace XinTuo.Finance.Services
         public List<MCertWord> GetCompanyCertWords()
         {
             MCompany com = _company.GetCompanyWithCurrentUser();
-
-            DataTable dt = _dbHelper.ExecuteDataTable(string.Format("select * from [Finance_CertificateWordRecord] where [CompanyId] = '{0}'",com.CompanyId.ToString("D")));
-            return Utility.Convert<MCertWord>(dt);
+            if (com != null)
+            {
+                DataTable dt = _dbHelper.ExecuteDataTable(string.Format("select * from [Finance_CertificateWordRecord] where [CompanyId] = '{0}'", com.CompanyId.ToString("D")));
+                return Utility.Convert<MCertWord>(dt);
+            }
+            else
+            {
+                return new List<MCertWord>();
+            }
         }
     }
 }

@@ -37,7 +37,7 @@ namespace XinTuo.Finance.Models
             get;set;
         }
 
-        public int Quantity
+        public int? Quantity
         {
             get;set;
         }

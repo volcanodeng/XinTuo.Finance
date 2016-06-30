@@ -52,7 +52,7 @@ namespace XinTuo.Finance.Services
 
         public MVoucher[] GetVouchers(Guid companyId)
         {
-            string sql = string.Format("select * from [Finance_VoucherRecord] where [CompanyId]='{0}' ", companyId.ToString("N"));
+            string sql = string.Format("select * from [Finance_VoucherRecord] where [CompanyId]='{0}' ", companyId.ToString("D"));
             DataTable dt = _dbHelper.ExecuteDataTable(sql);
 
             List<MVoucher> vouchers = Utility.Convert<DataTable, List<MVoucher>>(dt);
@@ -66,7 +66,9 @@ namespace XinTuo.Finance.Services
         public MVoucher[] GetVouchers()
         {
             MCompany com = _company.GetCompanyWithCurrentUser();
-            return GetVouchers(com.CompanyId);
+            if (com != null) return GetVouchers(com.CompanyId);
+            else
+                return new MVoucher[] { };
         }
 
         public MVoucher GetVoucher(int vid)
@@ -86,7 +88,7 @@ namespace XinTuo.Finance.Services
         {
             if (certWord.Length > 2) throw new FormatException("凭证字格式无效");
 
-            string sql = string.Format("select * from [Finance_VoucherRecord] where [CompanyId]='{0}' and [CertWord]='{1}' and [CertWordSn]={2}", companyId.ToString("N"), certWord, certWordSn);
+            string sql = string.Format("select * from [Finance_VoucherRecord] where [CompanyId]='{0}' and [CertWord]='{1}' and [CertWordSn]={2}", companyId.ToString("D"), certWord, certWordSn);
             DataTable dt = _dbHelper.ExecuteDataTable(sql);
 
             List<MVoucher> vouchers = Utility.Convert<DataTable, List<MVoucher>>(dt);

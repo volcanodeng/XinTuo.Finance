@@ -41,7 +41,7 @@ namespace XinTuo.Finance.Services
             MCompany com = _company.GetCompanyWithCurrentUser();
             if (com == null) return new List<MSummary>();
 
-            DataTable dt = _dbHelper.ExecuteDataTable(string.Format("select * from [Finance_SummaryRecord] where company = '{0}'",com.CompanyId.ToString("N")));
+            DataTable dt = _dbHelper.ExecuteDataTable(string.Format("select * from [Finance_SummaryRecord] where company = '{0}'",com.CompanyId.ToString("D")));
 
             List<MSummary> summarys = Utility.Convert<MSummary>(dt);
             return summarys;
