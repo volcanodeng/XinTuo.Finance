@@ -19,6 +19,13 @@ namespace XinTuo.Finance.Services
         MVoucher GetVoucher(Guid companyId, string certWord, int certWordSn);
 
         int SaveVoucher(MVoucher voucher);
+
+
+        List<MVoucherAbstracts> GetCompanyVoucherAbstracts();
+
+        int SaveVoucherAbstracts(MVoucherAbstracts abstracts);
+
+        int DeleteVoucherAbstracts(MVoucherAbstracts abstracts);
     }
 
 
@@ -162,6 +169,51 @@ namespace XinTuo.Finance.Services
 
             int res = _dbHelper.UpdateDatatable(dt, sql);
             return res;
+        }
+
+        public List<MVoucherAbstracts> GetCompanyVoucherAbstracts()
+        {
+            MCompany com = _company.GetCompanyWithCurrentUser();
+            if (com == null) return new List<MVoucherAbstracts>();
+
+            DataTable dt = _dbHelper.ExecuteDataTable(string.Format("select * from [Finance_VoucherAbstractsRecord] where [CompanyId] = '{0}'",com.CompanyId.ToString("D")));
+            return Utility.Convert<MVoucherAbstracts>(dt);
+        }
+
+        public int SaveVoucherAbstracts(MVoucherAbstracts abstracts)
+        {
+            if (abstracts == null) return 0;
+
+            string sql = string.Format("select * from [Finance_VoucherAbstractsRecord] where [AId] = {0}",abstracts.AId);
+            DataTable dt = _dbHelper.ExecuteDataTable(sql);
+
+            DataRow dr;
+            if(dt.Rows.Count > 0)
+            {
+                dr = dt.Rows[0];
+            }
+            else
+            {
+                MCompany com = _company.GetCompanyWithCurrentUser();
+                if (com == null) return -1;
+
+                dr = dt.NewRow();
+                dr["CompanyId"] = com.CompanyId;
+                dr["Creator"] = _context.GetContext().CurrentUser.UserName;
+                dr["CreateTime"] = DateTime.Now;
+                dt.Rows.Add(dr);
+            }
+
+            dr["Abstracts"] = abstracts.Abstracts;
+
+            return _dbHelper.UpdateDatatable(dt, sql);
+        }
+
+        public int DeleteVoucherAbstracts(MVoucherAbstracts abstracts)
+        {
+            if (abstracts == null || abstracts.AId <=0) return 0;
+
+            return _dbHelper.ExecuteNonQuery(string.Format("delete from [Finance_VoucherAbstractsRecord] where [AId] = {0}",abstracts.AId));
         }
     }
 }

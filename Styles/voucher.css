@@ -203,3 +203,15 @@ text-align: right; }
 .lb-data .lb-details{   width: auto; float: none; text-align: center;    font-size: 30px;  line-height: 30px;  padding: 0;    font-weight: bold;    color: #fff; }
 .lb-data .lb-details .lb-number{    text-align: center;    font-size: 30px;    padding: 0;    font-weight: bold;    color: #fff; }
 .lb-data .lb-closeContainer{  position: absolute; right: 0;top: 0; text-align: center;    font-size: 30px;    padding: 0;    font-weight: bold;    color: #fff; }
+
+
+/*摘要弹出框*/
+#abstractsWin .wrap {
+    padding:10px;
+}
+
+#abstractsWin .footBtn {
+    margin-top:20px;
+    margin-right:10px;
+    text-align:right;
+}

@@ -39,6 +39,11 @@ function absClickButton()
 {
     $("#abstractsWin").dialog("open");
 }
+function absClose()
+{
+    $("#abstractsWin").dialog("close");
+}
+
 
 function saveVoucher()
 {

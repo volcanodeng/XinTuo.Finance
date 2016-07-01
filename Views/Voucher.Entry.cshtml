@@ -70,5 +70,23 @@
         
     </div>
 
-    <div id="abstractsWin" class="easyui-dialog" title="摘要选择" style="width:400px;height:200px;"        data-options="modal:true,closed: true"></div>
+    <div id="abstractsWin" class="easyui-dialog" title="摘要选择" style="width:400px;height:500px;"  data-options="modal:true,closed: true">
+        <div class="wrap">
+            <p><label for="">摘要内容：</label></p>
+            <input class="easyui-textbox" data-options="multiline:true" style="width:355px;height:60px;">
+            <p class="footBtn">
+                <a class="button" id="absSave">保 存</a>
+                <a class="button" id="cancel" onclick="absClose()">取 消</a>
+            </p>
+
+            <table class="easyui-datagrid" id="absList" data-options="singleSelect: true" style="width:355px;">
+                <thead>
+                    <tr>
+                        <th data-options="field:'abstracts',width:240,align:'center'">摘要</th>
+                        <th data-options="field:'aId',width:100,align:'center'">操作</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
 </div>
