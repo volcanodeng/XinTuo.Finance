@@ -106,6 +106,13 @@ namespace XinTuo.Finance.Services
             return vouchers.FirstOrDefault();
         }
 
+        public MVoucher GetCompanyLastVoucher()
+        {
+            MCompany com = _company.GetCompanyWithCurrentUser();
+            int lastVid = Convert.ToInt32(_dbHelper.ExecuteScalar(string.Format("select [VId] from [Finance_VoucherRecord] where [CompanyId] = '{0}' order by [CreateTime] desc",com.CompanyId.ToString("D"))));
+            return GetVoucher(lastVid);
+        }
+
         public int SaveVoucher(MVoucher voucher)
         {
             string sql = string.Format("select * from [Finance_VoucherRecord] where [VId] = {0}",voucher.VId);

@@ -1,9 +1,14 @@
 ﻿
 $(function () {
-
+    initData();
     loadVoucher();
     
 });
+
+function initData()
+{
+    $("#cw").combobox("setValue","记");
+}
 
 
 function loadVoucher()

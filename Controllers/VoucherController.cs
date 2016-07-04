@@ -15,17 +15,22 @@ namespace XinTuo.Finance.Controllers
     {
         private readonly IOrchardServices _services;
         private readonly IVoucherService _voucher;
+        private readonly ICertWordService _certWord;
 
-        public VoucherController(IOrchardServices services,IVoucherService voucherService)
+        public VoucherController(IOrchardServices services,IVoucherService voucherService, ICertWordService certWord)
         {
             _services = services;
             _voucher = voucherService;
+            _certWord = certWord;
         }
 
         [Themed]
         public ActionResult Voucher()
         {
-            return new ShapeResult(this,_services.New.Voucher_Entry());
+            int newCertWordSn = _certWord.GetCompanyNewCertWordSn();
+            return new ShapeResult(this,_services.New.Voucher_Entry(
+                NewCertWordSn : newCertWordSn
+                ));
         }
     }
 }
