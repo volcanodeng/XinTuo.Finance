@@ -31,7 +31,7 @@
                 <span class="txt">号</span>
                 <span class="date_wrap">
                     <span class="txt">日期</span>
-                    <input id="dd" type="text" class="easyui-datebox" style="width:100px;height:30px;">
+                    <input id="dd" type="text" class="easyui-datebox" style="width:100px;height:30px;" data-options="onChange:onDateChange" value="@DateTime.Now.ToString("yyyy/mm/dd")">
                 </span>
             </div>
             <div class="tit_wrap">

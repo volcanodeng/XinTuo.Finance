@@ -7,7 +7,9 @@ $(function () {
 
 function initData()
 {
-    $("#cw").combobox("setValue","记");
+    $("#cw").combobox("setValue", "记");
+
+    onDateChange($("#dd").datebox("getValue"));
 }
 
 
@@ -47,6 +49,15 @@ function absClickButton()
 function absClose()
 {
     $("#abstractsWin").dialog("close");
+}
+function onDateChange(newValue, oldValue)
+{
+    var dArr = newValue.split('-');
+    if (dArr.length == 3) {
+        var m = new Number(dArr[1]);
+        $("#vch_year").text(dArr[0]);
+        $("#vch_period").text(m);
+    }
 }
 
 
