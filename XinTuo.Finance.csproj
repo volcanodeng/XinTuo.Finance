@@ -149,6 +149,7 @@
     <Compile Include="Models\MAuxAccounting.cs" />
     <Compile Include="Models\MCertWord.cs" />
     <Compile Include="Models\MCompany.cs" />
+    <Compile Include="Models\MEasyuiTree.cs" />
     <Compile Include="Models\MRegion.cs" />
     <Compile Include="Models\MSubject.cs" />
     <Compile Include="Models\MSubjectCategory.cs" />

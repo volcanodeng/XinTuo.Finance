@@ -50,7 +50,7 @@
                     <tr>
 
                         <th data-options="field:'abstracts',width:180,align:'center',editor:{type:'textbox',options:{buttonText:'摘要',onClickButton:absClickButton}}" rowspan="2">摘要</th>
-                        <th data-options="field:'subjectCode',width:120,align:'center'" rowspan="2">会计科目</th>
+                        <th data-options="field:'subjectCode',formatter:scFormatter,width:120,editor:{type:'combotree',options:{url:'/api/s/GetComSubjectsForTree'}}" rowspan="2">会计科目</th>
                         <th>借方金额</th>
                         <th>贷方金额</th>
                     </tr>

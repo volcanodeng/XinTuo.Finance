@@ -5,49 +5,40 @@ using System.Web;
 
 namespace XinTuo.Finance.Models
 {
-    public class MVoucherDetail
+    public class MEasyuiTree
     {
-        public int VdId
+        public MEasyuiTree()
+        {
+            attributes = new System.Collections.Hashtable();
+            children = new List<MEasyuiTree>();
+        }
+
+        public int id
         {
             get; set;
         }
 
-        public int VId
+        public string text
         {
             get; set;
         }
 
-        public string Abstracts
+        public string state
         {
             get; set;
         }
 
-        public int SubjectCode
-        {
-            get; set;
-        }
-
-        public string SubjectName
+        public bool @checked
         {
             get;set;
         }
 
-        public decimal Debit
-        {
-            get; set;
-        }
-
-        public decimal Credit
+        public System.Collections.Hashtable attributes
         {
             get;set;
         }
 
-        public int? Quantity
-        {
-            get;set;
-        }
-
-        public MVoucher Voucher
+        public List<MEasyuiTree> children
         {
             get;set;
         }

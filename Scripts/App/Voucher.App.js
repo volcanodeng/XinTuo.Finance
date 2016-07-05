@@ -42,6 +42,10 @@ function creditFormatter(value, row, index) {
 
     return '<div class="col_credit"><div class="cell_val credit_val">' + value + '</div></div>';
 }
+function scFormatter(value, row, index)
+{
+    return value + " " + row.subjectName;
+}
 function absClickButton()
 {
     $("#abstractsWin").dialog("open");
@@ -101,3 +105,7 @@ function saveVoucher()
         });
 }
 
+function fieldSettingFun(editIndex)
+{
+    alert(editIndex);
+}

@@ -69,6 +69,7 @@ $.extend($.fn.datagrid.methods, {
             opts.onClickCell = function (index, field) {
                 if (opts.editIndex != undefined) {
                     if (dg.datagrid('validateRow', opts.editIndex)) {
+                        if (typeof (fieldSettingFun) == "function") fieldSettingFun(opts.editIndex);
                         dg.datagrid('endEdit', opts.editIndex);
                         opts.editIndex = undefined;
                     } else {

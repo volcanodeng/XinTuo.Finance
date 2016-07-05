@@ -16,6 +16,10 @@ namespace XinTuo.Finance.Services
 
         List<MSubject> GetSubjectsByCode(int subjectCode);
 
+        List<MSubject> GetSubjectsForCompany();
+
+        List<MEasyuiTree> GetCompanySubjectsForTree();
+
         int SaveSubject(MSubject subject);
 
         List<MSubjectCategory> GetMainCategory();
@@ -69,6 +73,23 @@ namespace XinTuo.Finance.Services
                 default:
                     return 1;
             }
+        }
+
+        private MEasyuiTree BuildSubjectTree(MSubject[] subjects,MEasyuiTree tree,MSubject[] source)
+        {
+            foreach(MSubject s in subjects)
+            {
+                MEasyuiTree node = new MEasyuiTree();
+                node.id = s.SubjectCode;
+                node.text = string.Format("{0} {1}", s.SubjectCode, s.SubjectName);
+                node.state = "open";
+                tree.children.Add(node);
+
+                MSubject[] sArr = source.Where(src => src.ParentSubjectCode == s.SubjectCode).ToArray();
+                if (sArr.Length > 0) BuildSubjectTree(sArr, node, source);
+            }
+
+            return tree;
         }
 
         #endregion
@@ -182,6 +203,29 @@ namespace XinTuo.Finance.Services
                 return this.GetCompanyAuxAcc(curCom.CompanyId);
             else
                 return new List<MAuxAccounting>();
+        }
+
+        public List<MEasyuiTree> GetCompanySubjectsForTree()
+        {
+            MEasyuiTree root = new MEasyuiTree();
+            List<MSubject> subjects = GetSubjectsForCompany();
+            MSubject[] sArr = subjects.Where(s => !s.ParentSubjectCode.HasValue).ToArray();
+
+            this.BuildSubjectTree(sArr, root, subjects.ToArray());
+
+            return root.children;
+        }
+
+        public List<MSubject> GetSubjectsForCompany()
+        {
+            MCompany com = _company.GetCompanyWithCurrentUser();
+            if(com!=null)
+            {
+                DataTable dt = _dbHelper.ExecuteDataTable(string.Format("select * from [Finance_SubjectsRecord] where [CompanyId]='{0}'",com.CompanyId.ToString("D")));
+                return Utility.Convert<MSubject>(dt);
+            }
+
+            return new List<MSubject>();
         }
     }
 }

@@ -46,7 +46,7 @@ namespace XinTuo.Finance.Services
 
         private MVoucher BindVoucherDetail(MVoucher voucher)
         {
-            string sql = string.Format("select * from [Finance_VoucherDetailRecord] where [VId] = {0}",voucher.VId);
+            string sql = string.Format("select *,(select top 1 [SubjectName] from [Finance_SubjectsRecord] where [SubjectCode]=vdr.[SubjectCode]) as SubjectName from [Finance_VoucherDetailRecord] vdr where [VId] = {0}", voucher.VId);
             DataTable dt = _dbHelper.ExecuteDataTable(sql);
 
             List<MVoucherDetail> detail = Utility.Convert<MVoucherDetail>(dt);

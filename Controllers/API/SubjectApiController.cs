@@ -39,6 +39,13 @@ namespace XinTuo.Finance.Controllers.API
 
         [HttpGet]
         [HttpPost]
+        public IHttpActionResult GetComSubjectsForTree()
+        {
+            return Ok(_subjectService.GetCompanySubjectsForTree());
+        }
+
+        [HttpGet]
+        [HttpPost]
         public IHttpActionResult GetSelectableCategory()
         {
             return Ok(_subjectService.GetCategorySelectable());
