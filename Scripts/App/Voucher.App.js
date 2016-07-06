@@ -104,6 +104,10 @@ function saveVoucher()
             }
         });
 }
+function addVoucher()
+{
+
+}
 
 function fieldSettingFun(editIndex)
 {
