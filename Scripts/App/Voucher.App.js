@@ -107,5 +107,10 @@ function saveVoucher()
 
 function fieldSettingFun(editIndex)
 {
-    alert(editIndex);
+    var ed = $('#voucherTab').datagrid('getEditor', { index: editIndex, field: 'subjectCode' });
+    if (!ed) return;
+
+    var subjectName = $(ed.target).combotree('getText');
+    var sNames = subjectName.split(" ");
+    if (sNames.length > 1) $('#voucherTab').datagrid('getRows')[editIndex]['subjectName'] = sNames[1];
 }
