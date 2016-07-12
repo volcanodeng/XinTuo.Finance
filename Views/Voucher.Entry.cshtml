@@ -9,7 +9,7 @@
 <div class="wrapper">
     <div class="mod-toolbar-top">
         <div class="left">
-            <a class="button primaryAction" id="add">新增</a>
+            <a class="button primaryAction" id="add" onclick="addVoucher()">新增</a>
             <a class="button" id="edit" onclick="saveVoucher()">保存</a>
             <a class="button" id="print">打印</a>
             <a class="button" id="audit">审核</a>
@@ -55,11 +55,11 @@
                         <th>贷方金额</th>
                     </tr>
                     <tr>
-                        <th  data-options="field:'debit',align:'center',width:230,formatter:debiteFormatter">
+                        <th  data-options="field:'debit',align:'center',width:230,formatter:debiteFormatter,editor:{type:'numberbox'}">
 
                             <div class="money_unit"><span>亿</span> <span>千</span> <span>百</span> <span>十</span> <span>万</span> <span>千</span> <span>百</span> <span>十</span> <span>元</span> <span>角</span> <span class="last">分</span> </div>
                         </th>
-                        <th data-options="field:'credit',align:'center',width:230,formatter:creditFormatter">
+                        <th data-options="field:'credit',align:'center',width:230,formatter:creditFormatter,editor:{type:'numberbox'}">
 
                             <div class="money_unit"><span>亿</span> <span>千</span> <span>百</span> <span>十</span> <span>万</span> <span>千</span> <span>百</span> <span>十</span> <span>元</span> <span>角</span> <span class="last">分</span> </div>
                         </th>
