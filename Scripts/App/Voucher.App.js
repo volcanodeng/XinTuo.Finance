@@ -1,29 +1,42 @@
 ﻿
+//全局定义
+var globVar = {
+    voucher: [],             //凭证数据集合
+    voucherIndex: -1         //当前凭证实例在集合中的索引
+};
+
+//======初始化=======
 $(function () {
-    initData();
     loadVoucher();
-    
 });
-
-function initData()
-{
-    $("#cw").combobox("setValue", "记");
-
-    onDateChange($("#dd").datebox("getValue"));
-}
-
 
 function loadVoucher()
 {
     $.get('/api/v/GetComVouchers', function (data) {
+        globVar.voucher = data;
         if (data && data.length > 0) {
-            $("#voucherTab").datagrid("loadData", data[data.length - 1].voucherDetails);
+            globVar.voucherIndex = data.length - 1;
+            binding(data[globVar.voucherIndex]);
+
+            $("#voucherTab").datagrid("loadData", data[globVar.voucherIndex].voucherDetails);
             $("#voucherTab").datagrid("enableCellEditing");
         }
     });
 }
 
+function binding(voucher)
+{
+    $("#cw").combobox("setValue", voucher.certWord);
+    $("#ss").numberspinner("setValue", voucher.certWordSn);
+    $("#dd").datebox("setValue", voucher.voucherTime.substr(0, voucher.voucherTime.indexOf("T")));
+    onDateChange($("#dd").datebox("getValue"));
 
+    $("#attCw").numberbox("setValue", voucher.attachedInvoices);
+}
+
+//=========初始化=======
+
+//=========事件响应=====
 function debiteFormatter(value, row, index) {
     if (value.toString().indexOf(".") == -1)
         value = value * 100;
@@ -99,24 +112,6 @@ function saveVoucher()
                 AttachedInvoices: $("#attCw").numberbox('getValue'),
                 VoucherTime: $("#dd").datebox("getValue"),
                 VoucherDetails: changeRows
-                    //[
-                    //{
-                    //    VId: 1,
-                    //    Abstracts: '测试凭证',
-                    //    SubjectCode: 1002,
-                    //    Debit: 30,
-                    //    Credit: 0,
-                    //    Quantity: 0
-                    //},
-                    //{
-                    //    VId: 1,
-                    //    Abstracts: '测试1',
-                    //    SubjectCode: 1404,
-                    //    Debit: 0,
-                    //    Credit: 30,
-                    //    Quantity: 0
-                    //}
-                    //]
             },
             function (data) {
                 if (data >= 1) {
@@ -147,3 +142,18 @@ function fieldSettingFun(editIndex)
     var sNames = subjectName.split(" ");
     if (sNames.length > 1) $('#voucherTab').datagrid('getRows')[editIndex]['subjectName'] = sNames[1];
 }
+function prevClick()
+{
+    if (globVar.voucherIndex == 0) { $.messager.alert("前一项", "已到达第一项", "info"); return; }
+
+    if (globVar.voucherIndex > 0) globVar.voucherIndex--;
+    binding(globVar.voucher[globVar.voucherIndex]);
+}
+function nextClick() {
+
+    if (globVar.voucherIndex == globVar.voucher.length - 1) { $.messager.alert("下一项", "已到达最后一项", "info");  }
+
+    if (globVar.voucherIndex < globVar.voucher.length-1) globVar.voucherIndex++;
+    binding(globVar.voucher[globVar.voucherIndex]);
+}
+//=========事件响应=====

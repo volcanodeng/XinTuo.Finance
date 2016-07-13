@@ -38,5 +38,11 @@ namespace XinTuo.Finance.Controllers.API
         {
             return Ok(_voucherService.GetVouchers());
         }
+
+        [HttpGet]
+        public IHttpActionResult GetNewCertWordSn()
+        {
+            return Ok(_certWordService.GetCompanyNewCertWordSn());
+        }
     }
 }

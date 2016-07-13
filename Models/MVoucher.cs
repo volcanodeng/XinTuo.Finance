@@ -69,5 +69,6 @@ namespace XinTuo.Finance.Models
         {
             get;set;
         }
+
     }
 }

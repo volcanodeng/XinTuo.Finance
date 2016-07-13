@@ -27,10 +27,7 @@ namespace XinTuo.Finance.Controllers
         [Themed]
         public ActionResult Voucher()
         {
-            int newCertWordSn = _certWord.GetCompanyNewCertWordSn();
-            return new ShapeResult(this,_services.New.Voucher_Entry(
-                NewCertWordSn : newCertWordSn
-                ));
+            return new ShapeResult(this,_services.New.Voucher_Entry());
         }
     }
 }
