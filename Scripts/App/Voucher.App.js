@@ -18,7 +18,7 @@ function loadVoucher()
             globVar.voucherIndex = data.length - 1;
             binding(data[globVar.voucherIndex]);
 
-            $("#voucherTab").datagrid("loadData", data[globVar.voucherIndex].voucherDetails);
+            //$("#voucherTab").datagrid("loadData", data[globVar.voucherIndex].voucherDetails);
             $("#voucherTab").datagrid("enableCellEditing");
         }
     });
@@ -32,6 +32,8 @@ function binding(voucher)
     onDateChange($("#dd").datebox("getValue"));
 
     $("#attCw").numberbox("setValue", voucher.attachedInvoices);
+
+    $("#voucherTab").datagrid("loadData", globVar.voucher[globVar.voucherIndex].voucherDetails);
 }
 
 //=========初始化=======
@@ -106,7 +108,7 @@ function saveVoucher()
 
         $.post("/api/v/SaveVoucher",
             {
-                VId: 1,
+                VId: globVar.voucher[globVar.voucherIndex].vId,
                 CertWord: $("#cw").combobox("getValue"),
                 CertWordSn: $("#ss").numberspinner('getValue'),
                 AttachedInvoices: $("#attCw").numberbox('getValue'),
@@ -128,7 +130,7 @@ function addVoucher()
     if(datagridEndEdit())
     {
         var dg = $("#voucherTab");
-        dg.datagrid('appendRow', { abstracts: '', subjectCode: '', subjectName: '', debit: 0, credit: 0 });
+        dg.datagrid('appendRow', { vId: globVar.voucher[globVar.voucherIndex].vId, abstracts: '', subjectCode: '', subjectName: '', debit: 0, credit: 0 });
         
     }
 }
