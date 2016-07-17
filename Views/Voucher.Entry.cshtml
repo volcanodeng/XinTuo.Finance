@@ -12,7 +12,7 @@
             <a class="button primaryAction" id="add" onclick="addVoucher()">新增</a>
             <a class="button" id="edit" onclick="saveVoucher()">保存</a>
             <a class="button" id="print">打印</a>
-            <a class="button" id="audit">审核</a>
+            <a class="button" id="audit" onclick="reviewVoucher()">审核</a>
             <a class="button" id="copy">复制</a>
             <a class="button" id="delete">删除</a>
         </div>
@@ -89,6 +89,8 @@
             </table>
         </div>
     </div>
+
+    <div id="auditMark" class="has-audit"></div>
 
     <div id="mydata"></div>
 </div>

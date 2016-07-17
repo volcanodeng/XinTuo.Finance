@@ -26,6 +26,12 @@ namespace XinTuo.Finance.Controllers.API
         }
 
         [HttpPost]
+        public IHttpActionResult ReviewVoucher(int vid)
+        {
+            return Ok(_voucherService.ReviewVoucher(vid));
+        }
+
+        [HttpPost]
         [HttpGet]
         public IHttpActionResult GetCertWords()
         {

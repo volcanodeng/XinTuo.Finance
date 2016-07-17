@@ -162,7 +162,7 @@ text-align: right; }
 .ui-btn-menu .goto-con .ft { padding: 20px 0 0; zoom: 1; text-align: right; }
 #skip-btn { margin-right: 0 }
 #skip-period-select { width: 20px; }
-.has-audit, .has-checkout { width: 150px; height: 74px; background: url(img/audit.png) 0 0 no-repeat; position: absolute; right: 170px; top: 0px; }
+.has-audit, .has-checkout { width: 150px; height: 74px; background: url(Images/audit.png) 0 0 no-repeat; position: absolute; left: 1150px; top: 250px; }
 .has-checkout { background: url(img/checkout.png) 0 0 no-repeat; }
 
 /*余额弹出*/

@@ -45,6 +45,11 @@ namespace XinTuo.Finance.Models
             get;set;
         }
 
+        public VoucherStatus Status
+        {
+            get;set;
+        }
+
         public string Creator
         {
             get;set;
@@ -70,5 +75,21 @@ namespace XinTuo.Finance.Models
             get;set;
         }
 
+    }
+
+    public enum VoucherStatus
+    {
+        /// <summary>
+        /// 已保存
+        /// </summary>
+        Normal = 1,
+        /// <summary>
+        /// 已审核
+        /// </summary>
+        Review = 2,
+        /// <summary>
+        /// 反审核
+        /// </summary>
+        AntiAudit =3
     }
 }

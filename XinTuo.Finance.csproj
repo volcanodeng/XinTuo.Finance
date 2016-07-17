@@ -196,6 +196,7 @@
     <Content Include="Styles\default\images\tabs_icons.png" />
     <Content Include="Styles\default\images\tree_icons.png" />
     <Content Include="Styles\default\images\validatebox_warning.png" />
+    <Content Include="Styles\Images\audit.png" />
     <Content Include="Styles\Images\money_rp.png" />
     <Content Include="Styles\Styles.css" />
     <Content Include="Styles\Styles.min.css" />

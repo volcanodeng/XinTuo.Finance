@@ -20,6 +20,8 @@ namespace XinTuo.Finance.Services
 
         int SaveVoucher(MVoucher voucher);
 
+        int ReviewVoucher(int vid);
+
 
         List<MVoucherAbstracts> GetCompanyVoucherAbstracts();
 
@@ -150,6 +152,23 @@ namespace XinTuo.Finance.Services
             }
 
             return res;
+        }
+
+        public int ReviewVoucher(int vid)
+        {
+            string sql = string.Format("select * from [Finance_VoucherRecord] where [VId] = {0}",vid);
+            DataTable dt = _dbHelper.ExecuteDataTable(sql);
+            if (dt.Rows.Count > 0)
+            {
+                if (dt.Rows[0]["Status"]!=DBNull.Value && Convert.ToInt32(dt.Rows[0]["Status"])==1)
+                {
+                    dt.Rows[0]["Status"] = 2;
+
+                    return _dbHelper.UpdateDatatable(dt, sql);
+                }
+            }
+
+            return 0;
         }
 
         private int SaveVoucherDetail(int vid,MVoucherDetail[] details)

@@ -15,10 +15,10 @@ function loadVoucher()
     $.get('/api/v/GetComVouchers', function (data) {
         globVar.voucher = data;
         if (data && data.length > 0) {
-            globVar.voucherIndex = data.length - 1;
+            if (globVar.voucherIndex == -1) globVar.voucherIndex = data.length - 1;
+
             binding(data[globVar.voucherIndex]);
 
-            //$("#voucherTab").datagrid("loadData", data[globVar.voucherIndex].voucherDetails);
             $("#voucherTab").datagrid("enableCellEditing");
         }
     });
@@ -32,6 +32,7 @@ function binding(voucher)
     onDateChange($("#dd").datebox("getValue"));
 
     $("#attCw").numberbox("setValue", voucher.attachedInvoices);
+    if (voucher.status == 2) $("#auditMark").show(); else $("#auditMark").hide();
 
     $("#voucherTab").datagrid("loadData", globVar.voucher[globVar.voucherIndex].voucherDetails);
 }
@@ -133,6 +134,22 @@ function addVoucher()
         dg.datagrid('appendRow', { vId: globVar.voucher[globVar.voucherIndex].vId, abstracts: '', subjectCode: '', subjectName: '', debit: 0, credit: 0 });
         
     }
+}
+function reviewVoucher()
+{
+    $.post("/api/v/ReviewVoucher", { vid: globVar.voucher[globVar.voucherIndex].vId },
+        function (data) {
+            if(data >= 1)
+            {
+                loadVoucher();
+                binding(globVar.voucher[globVar.voucherIndex]);
+
+                $.messager.show({ title: '审核', msg: '审核完成' });
+            }
+            else {
+                $.messager.alert('审核', '审核失败，请联系管理员处理', 'warning');
+            }
+        });
 }
 
 function fieldSettingFun(editIndex)
